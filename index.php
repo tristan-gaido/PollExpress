@@ -9,8 +9,8 @@
 <header>
   <div class="header">
     <div id="logo" class="header-item">
-      <h1>PollExpress<1>
-      <img src="logo.png" alt="PollExpress Logo">
+      <h1>PollExpress<h1>
+      <p><img src="logo.png" alt="PollExpress Logo"><p>
     </div>
     <div class="header-item">
       <p>salut<p>
