@@ -9,7 +9,7 @@
 <header>
   <div class="header">
     <div id="logo" class="header-item">
-      <p>PollExpress<p>
+      <h1>PollExpress<1>
       <img src="logo.png" alt="PollExpress Logo">
     </div>
     <div class="header-item">
