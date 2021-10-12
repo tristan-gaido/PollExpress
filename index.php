@@ -7,6 +7,6 @@
   <script src="script.js"></script>
 </head>
 <body>
-  <p>TEST NOUVEAa&U HTML<p>
+  <p>TEST toutnouveau HTML<p>
 </body>
 </html>
