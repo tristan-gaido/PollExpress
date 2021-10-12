@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <title>PollExpress</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
   <script src="script.js"></script>
 </head>
 <header>
   <div class="header">
     <div class="header-item">
-      <p>Flowpen</p>
+      <p>Flowpen<p>
     </div>
     <div class="header-item">
-      <p>salut</p>
+      <p>salut<p>
     </div>
   </div>
 </header>
