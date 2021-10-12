@@ -14,8 +14,18 @@
     align-self: auto;
     }
 
-.headar-item:nth-child(2) {
+.header-item:nth-child(2) {
     order: 0;
     flex: 0 1 auto;
     align-self: auto;
     }
+
+#logo{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+  border-right: 10px solid #000;
+}

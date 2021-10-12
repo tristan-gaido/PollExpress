@@ -8,8 +8,9 @@
 </head>
 <header>
   <div class="header">
-    <div class="header-item">
-      <p>Flowpen<p>
+    <div id="logo" class="header-item">
+      <p>PollExpress<p>
+      <img src="logo.png" alt="PollExpress Logo">
     </div>
     <div class="header-item">
       <p>salut<p>
