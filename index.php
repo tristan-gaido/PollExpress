@@ -19,7 +19,7 @@
 <body>
   <?php
   echo "abcd";
-  <p>TEST toutnouveau HTML<p>
   ?>
+  <p>TEST toutnouveau HTML<p>
 </body>
 </html>
