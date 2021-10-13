@@ -1,2 +1,2 @@
-language = "html"
-run = " index.html"
+language = "html, php"
+run = " index.php"
