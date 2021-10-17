@@ -61,11 +61,11 @@
 
 			<?php
 
-				$reponse = $pdo->query('SELECT titre, lien, date_creation_sondage FROM Sondage ORDER BY date_creation_sondage DESC');
+				$sql = $pdo->query('SELECT titre, lien, date_creation_sondage FROM Sondage ORDER BY date_creation_sondage DESC');
 
-				while ($donnees = $reponse->fetch())
+				while ($listesondage = $sql->fetch())
 				{
-					echo $donnees['titre'] . ' : ' . '<a href="' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . '<br />';
+					echo $listesondage['titre'] . ' : ' . '<a href="' . $listesondage['lien'] . '">' . $listesondage['lien'] . '</a>' . ' Posté le : ' . $listesondage['date_creation_sondage'] . '<br />';
 				}
 
 				$reponse->closeCursor();
