@@ -30,7 +30,7 @@
 			$er_mdp = "Le mot de passe est vide";
 		}
 
-		$mdp= crypt($mdp, '$6$rounds=5000$pollexpresslesangdelaveine$'); //on crypte le mdp avec la meme clé que pour l'inscription
+		$mdp= crypt($mdp, '$6$rounds=5000$pollexpresscledecryptage$'); //on crypte le mdp avec la meme clé que pour l'inscription
 
 		$req = $pdo->prepare("SELECT * FROM User WHERE email = :email AND motdepasse = :mdp"); 
 		$req->execute(array('email' => $email, 'mdp' => $mdp));
