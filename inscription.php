@@ -81,7 +81,7 @@ if(!empty($_POST)){ //si le formulaire est vide ne rien faire
       //on execute la requete sql si toutes les conditions sont valides
       if($ok){
 
-        $mdp = crypt($mdp, '$6$rounds=5000$pollexpresslesangdelaveine$'); //cryptage du mdp
+        $mdp = crypt($mdp, '$6$rounds=5000$pollexpresscledecryptage$'); //cryptage du mdp
         $datecreation = date('Y-m-d H:i:s');
 
         $req = $pdo->prepare("INSERT INTO User SET pseudo = :pseudo, motdepasse = :motdepasse, email = :email, date_creation = :datecreation"); 
