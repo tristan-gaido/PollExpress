@@ -1,4 +1,4 @@
-{
+{ 
 	"_type": "Project",
 	"_id": "AAAAAAFF+h6SjaM2Hec=",
 	"name": "Untitled",
@@ -11,7 +11,7 @@
 			},
 			"name": "Model",
 			"ownedElements": [
-				{
+				{ index.php 
 					"_type": "UMLClassDiagram",
 					"_id": "AAAAAAFF+qBtyKM79qY=",
 					"_parent": {
