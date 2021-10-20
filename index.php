@@ -46,15 +46,6 @@
 	    </div>
 	  </div>
 	</header>
-        <body>
-	<div>
-	       <h1>Profil</h1>
-			<?php
-					echo 'Pseudo : ' . $_SESSION['pseudo'] . '<br>' . 'Email : ' . $_SESSION['email'] . '<br>' . 'ID : ' . $_SESSION['id'] . '<br>' . 'Vérifié : ' . $_SESSION['isVerified'];
-			?>
-	</div>
-	<div>
-		<br><br>
 		<?php
             if($_SESSION['isVerified']==1){
         ?>
@@ -72,28 +63,5 @@
 	</div>
 	<div>
 	    <h1>Sondages :</h1>
-			<div><strong>Récents :</strong></div>
-			<?php
-				$reponse = $pdo->query('SELECT * FROM Sondage ORDER BY date_creation_sondage DESC');
-
-				while ($donnees = $reponse->fetch())
-				{
-					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Vues : ' . $donnees['clics'] . '<br />';
-				}
-				$reponse->closeCursor();
-				?>
-		</div>
-			<br><br><br>
-			<div><strong>Les plus vus :</strong></div>
-
-			<?php
-				$reponse = $pdo->query('SELECT * FROM Sondage ORDER BY clics DESC');
-				while ($donnees = $reponse->fetch())
-				{
-					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Vues : ' . $donnees['clics'] . '<br />';
-				}
-				$reponse->closeCursor();
-				?>
-		</div>
 	  </body>
 </html>
