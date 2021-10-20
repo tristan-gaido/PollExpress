@@ -1,4 +1,5 @@
 <?php
+	session_name('pollexpress');
 	session_start();
 	include('./BDD.php');
 
@@ -14,18 +15,18 @@
 		$ok = true;
 
 
-	if (isset($_POST['postersondage'])){ //test pour le formulaire "postersondage"
+	if (isset($_POST['postersondage'])){ //test pour le formulaire "inscription"
 
 		//htmlentites = pour éviter les injections, trim = enleve les espaces au début et a la fin
 		$nomsondage = htmlentities(strtolower(trim($nomsondage)));
 		$lien = trim($lien);
 
-		if(empty($nomsondage)){ //test si titre est vide
+		if(empty($nomsondage)){ //test si email est vide
 			$ok = false;
 			$er_nomsondage = "Remplissez un titre pour le sondage";
 		}
 
-		if(empty($lien)){ //test si le lien est vide
+		if(empty($lien)){ //test si le mdp est vide
 			$ok = false;
 			$er_mdp = "Remplissez un lien pour le sondage";
 		}

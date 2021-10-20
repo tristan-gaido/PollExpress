@@ -1,8 +1,9 @@
 <?php
+	session_name('pollexpress');
 	session_start();
 	include('./BDD.php');
 
-	if (isset($_SESSION['id'])){ //si une session existe déja (= utilisateur connecté) on redirige vers la page d'accueil
+	if ((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==1)){ //si une session existe déja (= utilisateur connecté) on redirige vers la page d'accueil
 		header('Location: index.php');
 		exit;
 	}
@@ -29,8 +30,17 @@
 			$ok = false;
 			$er_mdp = "Le mot de passe est vide";
 		}
+		else{
+        $sql = $pdo->prepare("SELECT * FROM User WHERE email=?");
+        $sql->execute([$email]); 
+        $testtoken = $sql->fetch();
+        if($testtoken['confirmation_token']==0){
+          $ok = false;
+          $er_mdp = "Votre compte n'est pas validé. Veuillez cliquer sur le lien dans votre boite mail.";
+        }
+      }
 
-		$mdp= crypt($mdp, '$6$rounds=5000$pollexpresscledecryptage$'); //on crypte le mdp avec la meme clé que pour l'inscription
+		$mdp= crypt($mdp, '$6$rounds=5000$pollexpresslesangdelaveine$'); //on crypte le mdp avec la meme clé que pour l'inscription
 
 		$req = $pdo->prepare("SELECT * FROM User WHERE email = :email AND motdepasse = :mdp"); 
 		$req->execute(array('email' => $email, 'mdp' => $mdp));
@@ -45,7 +55,9 @@
 		if ($ok){ //si tout est valide, alors on charge une session avec les attributs de la requete
 			$_SESSION['id'] = $resultat['id']; 
 			$_SESSION['pseudo'] = htmlentities($resultat['pseudo']); //htmlentities pour éviter les injections html/php
-			$_SESSION['email'] = htmlentities($resultat['email']); 
+			$_SESSION['email'] = htmlentities($resultat['email']);
+			$_SESSION['isVerified'] = htmlentities($resultat['isVerified']);
+			$_SESSION['confirmation_token'] = $resultat['confirmation_token'];
 
 			header('Location: index.php'); //on redirige l'utilisateur vers la page d'accueil
 			exit;

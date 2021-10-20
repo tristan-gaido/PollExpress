@@ -1,11 +1,12 @@
 <?php
+session_name('pollexpress');
 session_start();
 
 include('./BDD.php');
 
 
 
-  if (isset($_SESSION['id'])){   //si une session existe déja (= utilisateur connecté) on redirige vers la page d'accueil
+  if ((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==1)){ //si une session existe déja (= utilisateur connecté) on redirige vers la page d'accueil
     header('Location: index.php');
     exit;
   }
@@ -41,10 +42,6 @@ if(!empty($_POST)){ //si le formulaire est vide ne rien faire
         } 
     }
 
-   /* elseif(strlen($mdp)<6){
-        $ok = false;
-        $er_mdp = "Le mot de passe doit faire au minimum 6 caractères." */
-
       // Verif email
       if(empty($email)){
         $ok = false;
@@ -76,24 +73,55 @@ if(!empty($_POST)){ //si le formulaire est vide ne rien faire
       }elseif($mdp != $confmdp){
         $ok = false;
         $er_mdp = "Les deux mots de passe ne correspondent pas";
+      
+
+      }elseif(strlen($mdp)<6){
+        $ok = false;
+        $er_mdp = "Le mot de passe doit faire au minimum 6 caractères.";
+      
       }
  
       //on execute la requete sql si toutes les conditions sont valides
       if($ok){
 
-        $mdp = crypt($mdp, '$6$rounds=5000$pollexpresscledecryptage$'); //cryptage du mdp
+        $mdp = crypt($mdp, '$6$rounds=5000$pollexpresslesangdelaveine$'); //cryptage du mdp
         $datecreation = date('Y-m-d H:i:s');
+        $token = bin2hex(random_bytes(12));
 
-        $req = $pdo->prepare("INSERT INTO User SET pseudo = :pseudo, motdepasse = :motdepasse, email = :email, date_creation = :datecreation"); 
-        $req->execute(array('pseudo' => $pseudo, 'motdepasse' => $mdp, 'email' => $email, 'datecreation' => $datecreation));
+        $req = $pdo->prepare("INSERT INTO User
+        SET pseudo = :pseudo, motdepasse = :motdepasse, email = :email, date_creation = :datecreation, argent = 100, isVerified = false, token = :token");
+        $req->execute(array('pseudo' => $pseudo, 'motdepasse' => $mdp, 'email' => $email, 'datecreation' => $datecreation, 'token' => $token));
+
+
+        $reqtoken = $pdo->prepare("SELECT * FROM User WHERE email = :email");
+        $reqtoken->execute(array('email' => $email));
+        $reqtoken = $reqtoken->fetch();
+
+        $mailconf = $reqtoken['email'];
+
+
+        $header = "From: PollExpress <tristan.gaido.pro@gmail.com>\n";
+        $header .= "MIME-version: 1.0\n";
+        $header .= "Content-type: text/html; charset=utf-8\n";
+        $header .= "Content-Transfer-ncoding: 8bit";
+
+        $contenu = '<p>Bonjour ' . $reqtoken['pseudo'] . ',</p><br>
+                    <p>CLiquez ici pour confirmer votre compte <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/verifmail.php?id=' . $reqtoken['id'] . '&token=' . $token . '">Valider</a><p>';
+        mail($mailconf, 'Confirmation de votre compte', $contenu, $header);
+
+
+        $_SESSION['confirmation_token'] = htmlentities($reqtoken['confirmation_token']);
         
 
-        header('Location: index.php'); //redirection vers la page index.php
+        
+
+        header('Location: redirectionemail.php'); //redirection vers la page index.php
         exit;
       }
     }
   }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
