@@ -46,43 +46,15 @@
 	    </div>
 	  </div>
 	</header>
-	<script>
-    function compteur() {
-        let count = localStorage.getItem('counter');
-        if(count === null){
-            count = 0;
-            localStorage.setItem('counter', count);
-        }
-        count = parseInt(count);
-        updateCompteur(count);
-    }
-    function augmenterCompteur() {
-        let count = parseInt(localStorage.getItem('counter'));
-        count = count + 1;
-        localStorage.setItem('counter', count);
-        updateCompteur(count);
-        return true;
-    }
-    function updateCompteur(count) {
-        document.getElementById("count").innerHTML = +count;
-    }
-</script>
         <body>
-   			<p id="count">-</p>
-    		<script type="text/javascript">
-        		compteur();
-    		</script>
 	<div>
 	       <h1>Profil</h1>
-
 			<?php
 					echo 'Pseudo : ' . $_SESSION['pseudo'] . '<br>' . 'Email : ' . $_SESSION['email'] . '<br>' . 'ID : ' . $_SESSION['id'] . '<br>' . 'Vérifié : ' . $_SESSION['isVerified'];
-
 			?>
 	</div>
 	<div>
-		<br>
-		<br>
+		<br><br>
 		<?php
             if($_SESSION['isVerified']==1){
         ?>
@@ -100,27 +72,28 @@
 	</div>
 	<div>
 	    <h1>Sondages :</h1>
-
 			<div><strong>Récents :</strong></div>
-
 			<?php
-
-				$reponse = $pdo->query('SELECT titre, lien, date_creation_sondage FROM Sondage ORDER BY date_creation_sondage DESC');
+				$reponse = $pdo->query('SELECT * FROM Sondage ORDER BY date_creation_sondage DESC');
 
 				while ($donnees = $reponse->fetch())
 				{
-					echo $donnees['titre'] . ' : ' . '<a href="' . $donnees['lien'] . '" onclick="augmenterCompteur()">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . '<br />';
+					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Vues : ' . $donnees['clics'] . '<br />';
 				}
-
 				$reponse->closeCursor();
-
 				?>
-
-
-				
-
-
 		</div>
+			<br><br><br>
+			<div><strong>Les plus vus :</strong></div>
 
+			<?php
+				$reponse = $pdo->query('SELECT * FROM Sondage ORDER BY clics DESC');
+				while ($donnees = $reponse->fetch())
+				{
+					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Vues : ' . $donnees['clics'] . '<br />';
+				}
+				$reponse->closeCursor();
+				?>
+		</div>
 	  </body>
 </html>
