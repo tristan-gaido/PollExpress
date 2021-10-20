@@ -1,7 +1,7 @@
 <?php
 	session_name('pollexpress');
 	session_start();
-
+	//test commentaire
 	include('./BDD.php');
 
 	if (!isset($_SESSION['id'])){   //Si l'utilisateur n'est pas connecté ou pas validé, il est redirigé automatiquement vers la page de login
