@@ -74,7 +74,7 @@
 	<meta charset="utf-8">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="registerlogin.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="../css/registerlogin.css" media="screen" type="text/css" />
 	<title>Connexion</title>
 </head>
 	<body>
