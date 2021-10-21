@@ -78,7 +78,7 @@
 
 				while ($donnees = $reponse->fetch())
 				{
-					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Vues : ' . $donnees['clics'] . '<br />';
+					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Image : ' . $donnees['image'] . ' Vues : ' . $donnees['clics'] . '<br />';
 				}
 				$reponse->closeCursor();
 				?>
