@@ -15,6 +15,7 @@
   }
 ?>
 
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,10 +26,11 @@
          <title>PollExpress</title>
     </head>
 	<header>
+
 	  <div class="header">
 	    <div id="logo" class="header-item">
 	      <h1>PollExpress </h1>
-	      <img src="logo.png" alt="PollExpress Logo">
+	      <img src="logo.png" alt="logo">
 	    </div>
 	    <div class="header-item">
 	      	<?php
@@ -45,6 +47,7 @@
 	?>
 	    </div>
 	  </div>
+
 	</header>
         <body>
 	<div>
@@ -70,30 +73,59 @@
            }
         ?>
 	</div>
-	<div>
+	<div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
 	    <h1>Sondages :</h1>
-			<div><strong>Récents :</strong></div>
+			<div><strong>Récents :</strong></div><br>
+			<div class = "listeSondage">
 			<?php
 				$reponse = $pdo->query('SELECT * FROM Sondage ORDER BY date_creation_sondage DESC');
+				$i = 0;
+				while ($donnees = $reponse->fetch() and $i<5) {
+					$i++;
+					?>
+					<div class ="sondage">
+					<?php
+					echo $donnees['titre'] . ' :';
 
-				while ($donnees = $reponse->fetch())
-				{
-					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Image : ' . $donnees['image'] . ' Vues : ' . $donnees['clics'] . '<br />';
-				}
+					echo '<a class="button" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><button class="button"> Répondre au sondage </button></a>';
+					
+					echo 'Posté le : ' . $donnees['date_creation_sondage'];
+					
+					echo ' Vues : ' . $donnees['clics'];
+					?>
+				</div>
+					<?php
+			}
 				$reponse->closeCursor();
 				?>
+			</div>
 		</div>
 			<br><br><br>
-			<div><strong>Les plus vus :</strong></div>
+			<div><strong>Les plus vus :</strong></div><br>
+			<div class = "listeSondage">
 
 			<?php
 				$reponse = $pdo->query('SELECT * FROM Sondage ORDER BY clics DESC');
-				while ($donnees = $reponse->fetch())
-				{
-					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Vues : ' . $donnees['clics'] . '<br />';
+				$i = 0;
+				while ($donnees = $reponse->fetch() and $i<5) {
+					$i++;
+					?>
+					<div class ="sondage">
+					<?php
+					echo $donnees['titre'] . ' : ';
+
+					echo '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><button class="button"> Répondre au sondage </button></a>';
+
+					echo 'Posté le : ' . $donnees['date_creation_sondage'];
+
+					echo ' Vues : ' . $donnees['clics'] . '<br />';
+					?>
+				</div>
+					<?php
 				}
 				$reponse->closeCursor();
 				?>
+			</div>
 		</div>
 	  </body>
 </html>

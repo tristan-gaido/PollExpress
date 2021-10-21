@@ -29,6 +29,31 @@ html{
     align-self: auto;
     }
 
+.listeSondage {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border:5px solid #18ab29;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.sondage {
+  background-color: #92d0fc;
+  font-size: 20px;
+  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+
 #logo{
   display: flex;
   flex-direction: row;
