@@ -17,18 +17,18 @@
 
 <!DOCTYPE html>
 <html>
+	 
     <head>
          <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	  <link rel="stylesheet" href="./css/styles.css">
+	  <link rel="stylesheet" type="text/css" href="./css/styles.css">
 	  <script src="script.js"></script>	
          <title>PollExpress</title>
     </head>
 	<header>
 	  <div class="header">
 	    <div id="logo" class="header-item">
-	      <h1>PollExpress </h1>
-	      <img src="logo.png" alt="PollExpress Logo">
+	      <img src="assets/PollExpressLogo.png" alt="PollExpress Logo">
 	    </div>
 	    <div class="header-item">
 	      	<?php
@@ -43,16 +43,16 @@
 		<?php
 	}
 	?>
-	    </div>
 	  </div>
 	</header>
         <body>
-	<div>
+   	<div id="content">
+		<div> 
 	       <h1>Profil</h1>
 			<?php
 					echo 'Pseudo : ' . $_SESSION['pseudo'] . '<br>' . 'Email : ' . $_SESSION['email'] . '<br>' . 'ID : ' . $_SESSION['id'] . '<br>' . 'Vérifié : ' . $_SESSION['isVerified'];
 			?>
-	</div>
+		</div>
 	<div>
 		<br><br>
 		<?php
