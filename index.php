@@ -5,12 +5,12 @@
 	include('./BDD.php');
 
 	if (!isset($_SESSION['id'])){   //Si l'utilisateur n'est pas connecté ou pas validé, il est redirigé automatiquement vers la page de login
-    header('Location: login.php');
+    header('Location: ./form/login.php');
     exit;
   }
 
   if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
-  		header('Location: login.php');
+  		header('Location: ./form/login.php');
 		exit;
   }
 ?>
@@ -20,7 +20,7 @@
     <head>
          <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	  <link rel="stylesheet" href="styles.css">
+	  <link rel="stylesheet" href="./css/styles.css">
 	  <script src="script.js"></script>	
          <title>PollExpress</title>
     </head>
@@ -34,93 +34,66 @@
 	      	<?php
 	if(isset($_SESSION['id'])){
 		?>
-			<a href="deconnexion.php">Déconnexion</a>
+			<a href="./script/deconnexion.php">Déconnexion</a>
 		<?php
 	}else{
 		?>
-		<a href="inscription.php">Inscription</a>
-		<a href="login.php">Connexion</a>
+		<a href="./form/inscription.php">Inscription</a>
+		<a href="./form/login.php">Connexion</a>
 		<?php
 	}
 	?>
 	    </div>
 	  </div>
 	</header>
-	<script>
-    function compteur() {
-        let count = localStorage.getItem('counter');
-        if(count === null){
-            count = 0;
-            localStorage.setItem('counter', count);
-        }
-        count = parseInt(count);
-        updateCompteur(count);
-    }
-    function augmenterCompteur() {
-        let count = parseInt(localStorage.getItem('counter'));
-        count = count + 1;
-        localStorage.setItem('counter', count);
-        updateCompteur(count);
-        return true;
-    }
-    function updateCompteur(count) {
-        document.getElementById("count").innerHTML = +count;
-    }
-</script>
         <body>
-   			<p id="count">-</p>
-    		<script type="text/javascript">
-        		compteur();
-    		</script>
 	<div>
 	       <h1>Profil</h1>
-
 			<?php
 					echo 'Pseudo : ' . $_SESSION['pseudo'] . '<br>' . 'Email : ' . $_SESSION['email'] . '<br>' . 'ID : ' . $_SESSION['id'] . '<br>' . 'Vérifié : ' . $_SESSION['isVerified'];
-
 			?>
 	</div>
 	<div>
-		<br>
-		<br>
+		<br><br>
 		<?php
             if($_SESSION['isVerified']==1){
         ?>
-            <a href="postersondage.php">Poster un sondage</a>
+            <a href="./form/postersondage.php">Poster un sondage</a>
             <br>
-            <a href="deverification.php">Se dévérifier</a>
+            <a href="./script/deverification.php">Se dévérifier</a>
         <?php
            }
            elseif($_SESSION['isVerified']==0){
            ?>
-           <a href="verifierprofil.php">Verifier son profil pour poster des sondages</a>
+           <a href="./script/verifierprofil.php">Verifier son profil pour poster des sondages</a>
         <?php
            }
         ?>
 	</div>
 	<div>
 	    <h1>Sondages :</h1>
-
 			<div><strong>Récents :</strong></div>
-
 			<?php
-
-				$reponse = $pdo->query('SELECT titre, lien, date_creation_sondage FROM Sondage ORDER BY date_creation_sondage DESC');
+				$reponse = $pdo->query('SELECT * FROM Sondage ORDER BY date_creation_sondage DESC');
 
 				while ($donnees = $reponse->fetch())
 				{
-					echo $donnees['titre'] . ' : ' . '<a href="' . $donnees['lien'] . '" onclick="augmenterCompteur()">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . '<br />';
+					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Image : ' . $donnees['image'] . ' Vues : ' . $donnees['clics'] . '<br />';
 				}
-
 				$reponse->closeCursor();
-
 				?>
-
-
-				
-
-
 		</div>
+			<br><br><br>
+			<div><strong>Les plus vus :</strong></div>
 
+			<?php
+				$reponse = $pdo->query('SELECT * FROM Sondage ORDER BY clics DESC');
+				while ($donnees = $reponse->fetch())
+				{
+					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Vues : ' . $donnees['clics'] . '<br />';
+				}
+				$reponse->closeCursor();
+				?>
+		</div>
 	  </body>
 </html>

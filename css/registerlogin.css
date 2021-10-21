@@ -1,0 +1,30 @@
+
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=email], input[type=url] {
+
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=url]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.boutonform {
+  background-color: #0C2461;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.boutonform:hover {
+  opacity:1;
+}
+
