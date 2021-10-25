@@ -85,13 +85,13 @@
 					?>
 					<div class ="sondage">
 					<?php
-					echo $donnees['titre'] . ' :';
+					echo '<h3 class = "titreSondage">' . $donnees['titre'] . ' :</h3>';
 
-					echo '<a class="button" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><button class="button"> Répondre au sondage </button></a>';
-					
-					echo 'Posté le : ' . $donnees['date_creation_sondage'];
-					
-					echo ' Vues : ' . $donnees['clics'];
+					echo '<a class = "lien" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><p class="button"> Répondre au sondage </p></a>';
+
+					echo '<p class = "champSondage">Posté le : ' . $donnees['date_creation_sondage'] . '</p>';
+
+					echo '<p class = "champSondage">Vues : ' . $donnees['clics'] . '</p><br />';
 					?>
 				</div>
 					<?php
@@ -112,13 +112,13 @@
 					?>
 					<div class ="sondage">
 					<?php
-					echo $donnees['titre'] . ' : ';
+					echo '<h3 class = "titreSondage">' . $donnees['titre'] . ' :</h3>';
 
-					echo '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><button class="button"> Répondre au sondage </button></a>';
+					echo '<a class = "lien" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><p class="button"> Répondre au sondage </p></a>';
 
-					echo 'Posté le : ' . $donnees['date_creation_sondage'];
+					echo '<p class = "champSondage">Posté le : ' . $donnees['date_creation_sondage'] . '</p>';
 
-					echo ' Vues : ' . $donnees['clics'] . '<br />';
+					echo '<p class = "champSondage">Vues : ' . $donnees['clics'] . '</p><br />';
 					?>
 				</div>
 					<?php

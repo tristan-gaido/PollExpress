@@ -35,13 +35,20 @@ html{
 }
 
 .button {
-  background-color: #4CAF50; /* Green */
-  border:5px solid #18ab29;
-  color: white;
-  padding: 10px 10px;
+  background-color: #8ff8ff; /* Green */
+  border:5px solid black;
+  color: black;
+  padding: 5px 10px;
   text-align: center;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
+   text-decoration: none;
+   margin-right: 10px;
+   margin-left: 10px;
+}
+
+.lien{
+  text-decoration: none;
 }
 
 .sondage {
@@ -54,6 +61,15 @@ html{
   margin-right: 10px;
 }
 
+.titreSondage { 
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.champSondage {
+  font-size: 18px;
+}
+
 #logo{
   display: flex;
   flex-direction: row;
@@ -63,3 +79,4 @@ html{
   align-items: stretch;
   border-right: 10px solid #000;
 }
+
