@@ -35,7 +35,7 @@ html{
 }
 
 .button {
-  background-color: #0ABDE3; /* Green */
+  background-color: #0ABDE3;
   border:3px solid black;
   color: black;
   padding: 5px 10px;
@@ -45,6 +45,12 @@ html{
    text-decoration: none;
    margin-right: 10px;
    margin-left: 10px;
+   transition-duration: 0.4s;
+   border-radius: 8px;
+}
+
+.button:hover {
+  background-color: #6be5ff;
 }
 
 .lien{
@@ -60,15 +66,31 @@ html{
   align-items: center;
   margin-right: 10px;
   margin-left: 10px;
+   border-radius: 8px;
 }
 
 .titreSondage { 
   margin-right: 10px;
   margin-left: 10px;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 20px;
 }
 
 .champSondage {
   font-size: 18px;
+}
+
+.colle {
+  margin-bottom:-8px;
+}
+
+.image {
+  width: 80%;
+  height: 80%;
+  border: 3px solid black;
 }
 
 #logo{
