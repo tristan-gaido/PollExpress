@@ -1,7 +1,7 @@
 <?php
 	session_name('pollexpress');
 	session_start();
-	//test commentaire
+
 	include('./BDD.php');
 
 	if (!isset($_SESSION['id'])){   //Si l'utilisateur n'est pas connecté ou pas validé, il est redirigé automatiquement vers la page de login
@@ -14,7 +14,6 @@
 		exit;
   }
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -29,8 +28,7 @@
 
 	  <div class="header">
 	    <div id="logo" class="header-item">
-	      <h1>PollExpress </h1>
-	      <img src="logo.png" alt="logo">
+	      <img id="imglogo" src="./assets/logo.png" alt="logo">
 	    </div>
 	    <div class="header-item">
 	      	<?php
@@ -51,7 +49,7 @@
 	</header>
         <body>
 	<div>
-	       <h1>Profil</h1>
+<h1>Profil</h1>
 			<?php
 					echo 'Pseudo : ' . $_SESSION['pseudo'] . '<br>' . 'Email : ' . $_SESSION['email'] . '<br>' . 'ID : ' . $_SESSION['id'] . '<br>' . 'Vérifié : ' . $_SESSION['isVerified'];
 			?>
@@ -73,7 +71,6 @@
            }
         ?>
 	</div>
-	<div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
 	    <h1>Sondages :</h1>
 			<div><strong>Récents :</strong></div><br>
 			<div class = "listeSondage">
