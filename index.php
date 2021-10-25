@@ -17,18 +17,18 @@
 
 <!DOCTYPE html>
 <html>
-	 
     <head>
          <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-	  <link rel="stylesheet" type="text/css" href="./css/styles.css">
+	  <link rel="stylesheet" href="./css/styles.css">
 	  <script src="script.js"></script>	
          <title>PollExpress</title>
     </head>
 	<header>
+
 	  <div class="header">
 	    <div id="logo" class="header-item">
-	      <img src="assets/PollExpressLogo.png" alt="PollExpress Logo">
+	      <img id="imglogo" src="./assets/logo.png" alt="logo">
 	    </div>
 	    <div class="header-item">
 	      	<?php
@@ -43,16 +43,17 @@
 		<?php
 	}
 	?>
+	    </div>
 	  </div>
+
 	</header>
         <body>
-   	<div id="content">
-		<div> 
-	       <h1>Profil</h1>
+	<div>
+<h1>Profil</h1>
 			<?php
 					echo 'Pseudo : ' . $_SESSION['pseudo'] . '<br>' . 'Email : ' . $_SESSION['email'] . '<br>' . 'ID : ' . $_SESSION['id'] . '<br>' . 'Vérifié : ' . $_SESSION['isVerified'];
 			?>
-		</div>
+	</div>
 	<div>
 		<br><br>
 		<?php
@@ -70,30 +71,58 @@
            }
         ?>
 	</div>
-	<div>
 	    <h1>Sondages :</h1>
-			<div><strong>Récents :</strong></div>
+			<div><strong>Récents :</strong></div><br>
+			<div class = "listeSondage">
 			<?php
 				$reponse = $pdo->query('SELECT * FROM Sondage ORDER BY date_creation_sondage DESC');
+				$i = 0;
+				while ($donnees = $reponse->fetch() and $i<5) {
+					$i++;
+					?>
+					<div class ="sondage">
+					<?php
+					echo '<h3 class = "titreSondage">' . $donnees['titre'] . ' :</h3>';
 
-				while ($donnees = $reponse->fetch())
-				{
-					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Image : ' . $donnees['image'] . ' Vues : ' . $donnees['clics'] . '<br />';
-				}
+					echo '<a class = "lien" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><p class="button"> Répondre au sondage </p></a>';
+
+					echo '<p class = "champSondage">Posté le : ' . $donnees['date_creation_sondage'] . '</p>';
+
+					echo '<p class = "champSondage">Vues : ' . $donnees['clics'] . '</p><br />';
+					?>
+				</div>
+					<?php
+			}
 				$reponse->closeCursor();
 				?>
+			</div>
 		</div>
 			<br><br><br>
-			<div><strong>Les plus vus :</strong></div>
+			<div><strong>Les plus vus :</strong></div><br>
+			<div class = "listeSondage">
 
 			<?php
 				$reponse = $pdo->query('SELECT * FROM Sondage ORDER BY clics DESC');
-				while ($donnees = $reponse->fetch())
-				{
-					echo $donnees['titre'] . ' : ' . '<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '">' . $donnees['lien'] . '</a>' . ' Posté le : ' . $donnees['date_creation_sondage'] . ' Vues : ' . $donnees['clics'] . '<br />';
+				$i = 0;
+				while ($donnees = $reponse->fetch() and $i<5) {
+					$i++;
+					?>
+					<div class ="sondage">
+					<?php
+					echo '<h3 class = "titreSondage">' . $donnees['titre'] . ' :</h3>';
+
+					echo '<a class = "lien" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><p class="button"> Répondre au sondage </p></a>';
+
+					echo '<p class = "champSondage">Posté le : ' . $donnees['date_creation_sondage'] . '</p>';
+
+					echo '<p class = "champSondage">Vues : ' . $donnees['clics'] . '</p><br />';
+					?>
+				</div>
+					<?php
 				}
 				$reponse->closeCursor();
 				?>
+			</div>
 		</div>
 	  </body>
 </html>
