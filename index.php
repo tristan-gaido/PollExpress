@@ -82,11 +82,13 @@
 					?>
 					<div class ="sondage">
 					<?php
-					echo '<h3 class = "titreSondage">' . $donnees['titre'] . ' :</h3>';
+					echo '<p class = "titreSondage">' . $donnees['titre'] . ' :</p>';
 
-					echo '<a class = "lien" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><p class="button"> Répondre au sondage </p></a>';
+					echo '<img class="image" src="https://assets.afcdn.com/recipe/20200504/110582_w1024h1024c1cx540cy960.webp">';
 
-					echo '<p class = "champSondage">Posté le : ' . $donnees['date_creation_sondage'] . '</p>';
+					echo '<a class = "lien colle " href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><p class="button"> Répondre au sondage </p></a>';
+
+					echo '<p class = "champSondage colle">Posté le : ' . $donnees['date_creation_sondage'] . '</p>';
 
 					echo '<p class = "champSondage">Vues : ' . $donnees['clics'] . '</p><br />';
 					?>
@@ -109,11 +111,13 @@
 					?>
 					<div class ="sondage">
 					<?php
-					echo '<h3 class = "titreSondage">' . $donnees['titre'] . ' :</h3>';
+					echo '<p class = "titreSondage">' . $donnees['titre'] . ' :</p>';
 
-					echo '<a class = "lien" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><p class="button"> Répondre au sondage </p></a>';
+					echo '<img class="image" src="https://assets.afcdn.com/recipe/20200504/110582_w1024h1024c1cx540cy960.webp">';
 
-					echo '<p class = "champSondage">Posté le : ' . $donnees['date_creation_sondage'] . '</p>';
+					echo '<a class = "lien colle" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/testclics.php?id=' .$donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><p class="button"> Répondre au sondage </p></a>';
+
+					echo '<p class = "champSondage colle">Posté le : ' . $donnees['date_creation_sondage'] . '</p>';
 
 					echo '<p class = "champSondage">Vues : ' . $donnees['clics'] . '</p><br />';
 					?>
