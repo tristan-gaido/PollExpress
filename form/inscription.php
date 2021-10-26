@@ -2,12 +2,12 @@
 session_name('pollexpress');
 session_start();
 
-include('./BDD.php');
+include('../BDD.php');
 
 
 
   if ((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==1)){ //si une session existe déja (= utilisateur connecté) on redirige vers la page d'accueil
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
   }
 
@@ -106,7 +106,7 @@ if(!empty($_POST)){ //si le formulaire est vide ne rien faire
         $header .= "Content-Transfer-ncoding: 8bit";
 
         $contenu = '<p>Bonjour ' . $reqtoken['pseudo'] . ',</p><br>
-                    <p>CLiquez ici pour confirmer votre compte <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/verifmail.php?id=' . $reqtoken['id'] . '&token=' . $token . '">Valider</a><p>';
+                    <p>CLiquez ici pour confirmer votre compte <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/script/verifmail.php?id=' . $reqtoken['id'] . '&token=' . $token . '">Valider</a><p>';
         mail($mailconf, 'Confirmation de votre compte', $contenu, $header);
 
 
@@ -115,7 +115,7 @@ if(!empty($_POST)){ //si le formulaire est vide ne rien faire
 
         
 
-        header('Location: redirectionemail.php'); //redirection vers la page index.php
+        header('Location: ../redirections/redirectionemail.php'); //redirection vers la page
         exit;
       }
     }
@@ -129,7 +129,7 @@ if(!empty($_POST)){ //si le formulaire est vide ne rien faire
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="registerlogin.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="../css/registerlogin.css" media="screen" type="text/css" />
     <title>Inscription</title>
   </head>
   <body>

@@ -2,7 +2,7 @@
 session_name('pollexpress');
 session_start();
 
-include('./BDD.php');
+include('../BDD.php');
 
 $ok = true;
 
@@ -29,12 +29,12 @@ if($ok){
     	echo 'Mauvais lien';
 
 	}else{
-		$req = $pdo->prepare("UPDATE User SET token = NULL, confirmation_token = :conftoken WHERE id = :id");
+		$req = $pdo->prepare("UPDATE User SET confirmation_token = :conftoken WHERE id = :id");
 		$req->execute(array('id' => $id, 'conftoken' => true));
     	$req = $req->fetch();
 
     	echo 'Compte validé';
-		header('Location: login.php'); //on redirige l'utilisateur vers la page d'accueil
+		header('Location: ../form/login.php'); //on redirige l'utilisateur vers la page d'accueil
     	exit;
 
     }

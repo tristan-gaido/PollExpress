@@ -1,10 +1,10 @@
 <?php
 	session_name('pollexpress');
 	session_start();
-	include('./BDD.php');
+	include('../BDD.php');
 
 	if ((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==1)){ //si une session existe déja (= utilisateur connecté) on redirige vers la page d'accueil
-		header('Location: index.php');
+		header('Location: ../index.php');
 		exit;
 	}
 
@@ -59,7 +59,7 @@
 			$_SESSION['isVerified'] = htmlentities($resultat['isVerified']);
 			$_SESSION['confirmation_token'] = $resultat['confirmation_token'];
 
-			header('Location: index.php'); //on redirige l'utilisateur vers la page d'accueil
+			header('Location: ../index.php'); //on redirige l'utilisateur vers la page d'accueil
 			exit;
 		}
 	}
@@ -74,7 +74,7 @@
 	<meta charset="utf-8">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="registerlogin.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="../css/registerlogin.css" media="screen" type="text/css" />
 	<title>Connexion</title>
 </head>
 	<body>
@@ -101,7 +101,7 @@
 			<?php
 				}
 			?>
-				<label for="password"><b>Mot de passe</b></label>
+				<label for="password"><b>Mot de passe <a href="../form/resetmdp.php">Mot de passe oublié</a></b></label>
 		  		<br>
 				<input type="password" placeholder="Mot de passe" name="mdp">
 				<br>
