@@ -1,5 +1,4 @@
-<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php
-" target="_blank">https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php</a>
+<a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php" target="_blank">https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php</a>
 
 https://webinfo.iutmontp.univ-montp2.fr/~bernacchiak/PollExpress/index.php
 
