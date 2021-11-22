@@ -1,1 +1,0 @@
-<p>Le lien pour réinitialiser votre adresse email vous a été transmis via votre email</p>
