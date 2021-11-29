@@ -26,7 +26,7 @@
     <script src="./assets/js/accueil.js"></script>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container">
-            <div class="collapse navbar-collapse" id="navcol-1"><img src="./assets/img/logo.png" style="width: 385px;margin: -13px;padding: 7px;">
+            <div class="collapse navbar-collapse" id="navcol-1"><a href="./index.php"><img src="./assets/img/logo.png" style="width: 385px;margin: -13px;padding: 7px;"></a>
                 <ul class="navbar-nav ms-auto">
                                 <?php
                         if(isset($_SESSION['id'])){
