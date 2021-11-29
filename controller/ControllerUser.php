@@ -109,7 +109,6 @@ class ControllerUser {
        $pagetitle='PollExpress';
        require_once File::build_path(array("view","view.php")); ;  //"redirige" vers la vue
    }
-
        public static function achatItem() {
        $liste_sondage = ModelUtilisateur::getAllSondages();
        $controller='user';
@@ -119,5 +118,11 @@ class ControllerUser {
        
        
    }
+   public static function testCode() {
+       $controller='user';
+       $view='testCode';
+       $pagetitle='PollExpress';
+       require_once File::build_path(array("view","view.php")); ;  //"redirige" vers la vue
+   }   
 }
 ?>
