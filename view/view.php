@@ -8,6 +8,7 @@
 <html>
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title><?php echo $pagetitle ?></title>
@@ -19,6 +20,7 @@
     <link rel="stylesheet" href="./assets/css/accueil.css">
     <link rel="stylesheet" href="./assets/css/boutique.css" >
 </head>
+
 
 <body>
     <script src="./assets/js/accueil.js"></script>
