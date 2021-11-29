@@ -109,7 +109,15 @@ class ControllerUser {
        $pagetitle='PollExpress';
        require_once File::build_path(array("view","view.php")); ;  //"redirige" vers la vue
    }
-
+       public static function achatItem() {
+       $liste_sondage = ModelUtilisateur::getAllSondages();
+       $controller='user';
+       $view='achatItem';
+       $pagetitle='PollExpress';
+       require_once File::build_path(array("view","view.php")); ;  //"redirige" vers la vue
+       
+       
+   }
    public static function testCode() {
        $controller='user';
        $view='testCode';
