@@ -95,7 +95,7 @@
             <div class="block-heading" style="height: -5px;">
                 <h2 class="text-info" style="text-align: center;"><strong>Se connecter</strong></h2>
             </div>
-            <p style="text-align: center;">Connectez vous à votre comptze PollExpress<br></p>
+            <p style="text-align: center;">Connectez vous à votre compte PollExpress<br></p>
             <form method="post">
               <?php
               if (isset($er_email)){ //si $er_mail n'est pas vide, alors on l'affiche

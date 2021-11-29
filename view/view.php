@@ -8,7 +8,6 @@
 <html>
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title><?php echo $pagetitle ?></title>
@@ -21,13 +20,12 @@
     <link rel="stylesheet" href="./assets/css/boutique.css" >
 </head>
 
-
 <body>
     <script src="./assets/js/accueil.js"></script>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container">
-            <div class="collapse navbar-collapse" id="navcol-1"><a href="./index.php"><img src="./assets/img/logo.png" style="width: 385px;margin: -13px;padding: 7px;"></a>
-                <ul class="navbar-nav ms-auto">
+             <div class="collapse navbar-collapse" id="navcol-1"><a href="./index.php"><img src="./assets/img/logo.png" style="width: 385px;margin: -13px;padding: 7px;"></a>
+                             <ul class="navbar-nav ms-auto">
                                 <?php
                         if(isset($_SESSION['id'])){
                             ?>
@@ -35,13 +33,11 @@
                                 <li class="nav-item"><a class="nav-link" href="./index.php?action=sondages">Sondages</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./index.php?action=boutique">Boutique</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./index.php?action=profil">Profil</a></li>
-                                <li class="nav-item"><a class="nav-link active" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/user/deconnexion.php">Déconnexion</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="./index.php?action=deconnexion">Déconnexion</a></li>
 
                             <?php
                         }else{
                             ?>
-                            <a href="./form/inscription.php">Debug Register</a>
-                            <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=login">Debug login</a>
 
                             <?php
                         }

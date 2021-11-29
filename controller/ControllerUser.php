@@ -108,6 +108,13 @@ class ControllerUser {
        $view='redirectionmdp';
        $pagetitle='PollExpress';
        require_once File::build_path(array("view","view.php")); ;  //"redirige" vers la vue
-   }     
+   }
+
+   public static function testCode() {
+       $controller='user';
+       $view='testCode';
+       $pagetitle='PollExpress';
+       require_once File::build_path(array("view","view.php")); ;  //"redirige" vers la vue
+   }   
 }
 ?>

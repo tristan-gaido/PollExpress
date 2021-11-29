@@ -10,6 +10,8 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
   echo $id_sondage;
   echo $lien_sondage;
 
+  setcookie("CodeSondage", $id_sondage, time()+3600);
+
   $sql = $pdo->prepare("SELECT * FROM Sondage WHERE id_sondage = :id_sondage");
   $sql->execute(array('id_sondage' => $id_sondage));
   $sql = $sql->fetch();
