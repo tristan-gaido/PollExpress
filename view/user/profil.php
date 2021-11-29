@@ -45,7 +45,7 @@ if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
                                             <?php
                                             echo '<h4 class="card-title" style="height: 25px;">' . $donnees['nom'] . '</h4>';
 
-                                            echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/ExpressPoll/view/boutique/unequip.php?itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Déséquiper</button></a></div></div></div></div>';
+                                            echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/boutique/unequip.php?itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Déséquiper</button></a></div></div></div></div>';
 
                                     }
                                         $reponse->closeCursor();
@@ -77,7 +77,7 @@ if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
                                             <?php
                                             echo '<h4 class="card-title" style="height: 25px;">' . $donnees['nom'] . '</h4>';
 
-                                            echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/ExpressPoll/view/boutique/equip.php?itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Équiper</button></a></div></div></div></div>';
+                                            echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/boutique/equip.php?itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Équiper</button></a></div></div></div></div>';
 
                                     }
                                         $reponse->closeCursor();

@@ -52,7 +52,7 @@ if(!empty($_POST)){
 
 			
 
-			        header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/ExpressPoll/index.php?action=redirectionmdp'); //redirection vers la page index.php
+			        header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=redirectionmdp'); //redirection vers la page index.php
 			        exit;
 			    }
 		}

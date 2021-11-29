@@ -22,6 +22,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
         $lien = trim($lien);
         $tag1 = htmlentities(trim($tag1));
         $tag2 = htmlentities(trim($tag2));
+        $code = htmlentities(trim($code));
 
 
         if(empty($nomsondage)){ //test si email est vide
@@ -42,25 +43,17 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
       $er_lien = "Ce sondage existe déjà";
         }
 
-        
-        $lien = trim($lien);
-        $name = $_FILES['image']['name'];
-    $pic_path = ROOT . "upload/$name";
-    if (!move_uploaded_file($_FILES['image']['tmp_name'], $pic_path)) {
-        echo "La copie a échoué";
-    }
-
 
 
     if ($ok){ //si tout est valide, alors on enregistre le sondage dans la BDD
 
-      $datecreation = date('Y-m-d H:i:s');
+      $datecreation = date('Y-m-d H');
 
-      $req = $pdo->prepare("INSERT INTO Sondage SET titre = :titre, lien = :lien, tag1 = :tag1, tag2 = :tag2, image = '0x89504E470D0A1A0A0000000D494844520000001000000010080200000090916836000000017352474200AECE1CE90000000467414D410000B18F0BFC6105000000097048597300000EC300000EC301C76FA8640000001E49444154384F6350DAE843126220493550F1A80662426C349406472801006AC91F1040F796BD0000000049454E44AE426082', date_creation_sondage = :datecreation");
-      $req->execute(array('titre' => $nomsondage, 'lien' => $lien, 'datecreation' => $datecreation, 'tag1' => $tag1, 'tag2' => $tag2));
+      $req = $pdo->prepare("INSERT INTO Sondage SET titre = :titre, lien = :lien, tag1 = :tag1, tag2 = :tag2, image = 'r', date_creation_sondage = :datecreation, code = :code");
+      $req->execute(array('titre' => $nomsondage, 'lien' => $lien, 'datecreation' => $datecreation, 'tag1' => $tag1, 'tag2' => $tag2, 'code' => $code));
           
    
-          header('Location: ../index.php'); //redirection vers la page index.php
+          header('Location: ./index.php'); //redirection vers la page index.php
           exit;
     }
   }
@@ -88,7 +81,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                 <h2 class="text-info" style="text-align: center;"><strong>Poster un sondage</strong></h2>
             </div>
             <p style="text-align: center;">Remplissez le formulaire pour poster un sondage sur PollExpress<br></p>
-            <form method="post" action="postersondage.php">
+            <form method="post">
               <?php
       if (isset($er_nomsondage)){ 
       ?>
@@ -96,8 +89,10 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
       <?php
         }
       ?>
-                <div class="mb-3"><label class="form-label" for="email"><strong>Nom du sondage</strong><br></label>
+                <div class="mb-3">
+                  <label class="form-label" for="email"><strong>Nom du sondage</strong><br></label>
                   <input class="form-control item" type="text" id="email" name="nomsondage" minlength="5" placeholder="Nom du sondage" name="email" value="<?php if(isset($nomsondage)){ echo $nomsondage; }?>" required></div>
+
                   <?php
             if (isset($er_lien)){ 
             ?>
@@ -105,8 +100,13 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
             <?php
               }
             ?>
-                <div class="mb-3"><label class="form-label" for="lien"><strong>Lien du sondage</strong><br></label>
+                <div class="mb-3">
+                  <label class="form-label" for="lien"><strong>Lien du sondage</strong><br></label>
                   <input class="form-control" type="url" id="password" name="lien" placeholder="Lien du sondage" value="<?php if(isset($lien)){ echo $lien; }?>" required></div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="code"><strong>Code du sondage</strong><br></label>
+                  <input class="form-control" type="text" id="code" name="code" placeholder="Code du sondage" value="<?php if(isset($code)){ echo $code; }?>" required></div>
 
 
         <br>
