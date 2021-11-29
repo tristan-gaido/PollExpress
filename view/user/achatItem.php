@@ -39,7 +39,7 @@ require_once '/home/ann2/brunetm/public_html/PollExpress/config/BDD.php';
   }
 
 
-  header('Location: https://google.com');
+  header('Location: ./index.php?action=boutique');
   exit;
 
 ?>
