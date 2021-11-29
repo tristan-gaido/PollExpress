@@ -6,7 +6,7 @@
   require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
   if ((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==1)){ //si une session existe déja (= utilisateur connecté) on redirige vers la page d'accueil
-    header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/ExpressPoll/');
+    header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/');
     exit;
   }
 
@@ -63,9 +63,11 @@
       $_SESSION['argent'] = htmlentities($resultat['argent']);
       $_SESSION['confirmation_token'] = $resultat['confirmation_token'];
       $_SESSION['date'] = htmlentities($resultat['date_creation']);
+      $_SESSION['xp'] = htmlentities($resultat['xp']);
 
 
-      header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/ExpressPoll/index.php'); //on redirige l'utilisateur vers la page d'accueil
+
+      header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php'); //on redirige l'utilisateur vers la page d'accueil
       exit;
     }
   }

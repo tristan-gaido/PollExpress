@@ -16,9 +16,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="./assets/css/vanilla-zoom.min.css">
+    <link rel="stylesheet" href="./assets/css/accueil.css">
+    <link rel="stylesheet" href="./assets/css/boutique.css" >
 </head>
 
 <body>
+    <script src="./assets/js/accueil.js"></script>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container">
             <div class="collapse navbar-collapse" id="navcol-1"><img src="./assets/img/logo.png" style="width: 385px;margin: -13px;padding: 7px;">
@@ -30,13 +33,13 @@
                                 <li class="nav-item"><a class="nav-link" href="./index.php?action=sondages">Sondages</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./index.php?action=boutique">Boutique</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./index.php?action=profil">Profil</a></li>
-                                <li class="nav-item"><a class="nav-link active" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/ExpressPoll/view/user/deconnexion.php">Déconnexion</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/user/deconnexion.php">Déconnexion</a></li>
 
                             <?php
                         }else{
                             ?>
                             <a href="./form/inscription.php">Debug Register</a>
-                            <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/ExpressPoll/index.php?action=login">Debug login</a>
+                            <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=login">Debug login</a>
 
                             <?php
                         }

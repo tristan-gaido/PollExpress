@@ -39,7 +39,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
   }
 
 
-  header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/ExpressPoll/index.php?action=boutique');
+  header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=boutique');
   exit;
 
 ?>

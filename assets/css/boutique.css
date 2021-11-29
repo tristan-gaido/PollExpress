@@ -1,0 +1,39 @@
+.categorie_boutique {
+height: 10%;
+background: #e2e2e2;
+align-items: center;
+    padding: 15px 32px;
+    display:flex;
+    justify-content: space-evenly;
+    border-radius: 20px; 
+
+}
+
+.categorie_boutique * {
+ font-size:48px;
+    border-radius:25px;
+  /*data-bss-hover-animate="pulse";*/
+    background-color:#e2e2e2;
+  border: none;
+  text-align: center;
+  font-weight:600;
+  display: inline-block;
+    color: #3B99E1;
+    transition-duration: 1s;
+}
+
+.categorie_boutique *:hover {
+  background-color: #d4d4d4;
+  }
+
+.partie_boutique {
+    background-color:#e9e9e9;
+    border-radius:40px;
+    padding-bottom: 40px;
+}
+
+.text_bouton_acheter:link {
+  text-decoration: none;
+  color: white;
+  font-weight:600;
+}

@@ -22,12 +22,7 @@ if ((isset($_GET['action']))){
 	if (in_array($_GET['action'], $methodes)) {
 		$controller_class::$action(); 
 	}
-	else{
-		require_once File::build_path(array("view/voiture","error.php"));
-
-	}
-
-}else{
+	}else{
 		$controller_class::accueil();
 	}
 
