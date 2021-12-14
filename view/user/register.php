@@ -106,7 +106,7 @@ if(!empty($_POST)){ //si le formulaire est vide ne rien faire
         $header .= "Content-Transfer-ncoding: 8bit";
 
         $contenu = '<p>Bonjour ' . $reqtoken['pseudo'] . ',</p><br>
-                    <p>CLiquez ici pour confirmer votre compte <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/user/verifmail.php?id=' . $reqtoken['id'] . '&token=' . $token . '">Valider</a><p>';
+                    <p>CLiquez ici pour confirmer votre compte <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=verifmail&id=' . $reqtoken['id'] . '&token=' . $token . '">Valider</a><p>';
         mail($mailconf, 'Confirmation de votre compte', $contenu, $header);
 
 

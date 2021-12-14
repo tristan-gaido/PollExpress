@@ -13,6 +13,13 @@ if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
     header('Location: ../form/login.php');
     exit;
 }
+
+$req2 = $pdo->prepare("SELECT COUNT(*) as Stats FROM SondageFait WHERE userID = :userID"); 
+$req2->execute(array('userID' => $_SESSION['id']));
+$resultat2 = $req2->fetch();
+$req2->closeCursor();
+
+
 ?>
 
     <main class="page landing-page">
@@ -31,6 +38,8 @@ if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
                         ?>
                         <h3>Email :</h3> <?php echo $_SESSION['email'];?>
                         <h3>Date de création du compte :</h3> <?php echo $_SESSION['date'];?>
+                        <h3>Nombre de sondages répondus :</h3> <?php echo $resultat2['Stats'];;?>
+
                         <br><br><br>
 
                         <h3>Équipement</h3> 
