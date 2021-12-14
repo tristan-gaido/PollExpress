@@ -52,7 +52,7 @@
         <section class="clean-block clean-info dark" style="background: #dcdde1; padding-bottom: 10px;">
             <div class="container">
                 <div class="block-heading"><br><br>
-                    <h2 class="text-info" style="color: #0c2461;"> <?php  echo 'Bienvenue, ' . $_SESSION['pseudo'] . '</h2>'; ?>
+                    <h2 class="text-info" style="color: #0c2461;"> <?php  echo 'Bienvenue, ' . $_SESSION['pseudo'] . ' ! </h2>'; ?>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-md-6">
