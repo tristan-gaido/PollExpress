@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./assets/css/vanilla-zoom.min.css">
     <link rel="stylesheet" href="./assets/css/accueil.css">
     <link rel="stylesheet" href="./assets/css/boutique.css" >
+    <link rel="stylesheet" href="./assets/css/leaderboard.css">
 </head>
 
 <body>

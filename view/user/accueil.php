@@ -61,25 +61,20 @@
             <div>
     <main class="page landing-page">
         <section class="clean-block clean-info dark" style="background: #dcdde1; padding-bottom: 10px;">
-            <div class="container">
+            <div class="container" style="width:50%">
                 <div class="block-heading"><br><br>
                     <h2 class="text-info" style="color: #0c2461;"> <?php  echo 'Bienvenue, ' . $_SESSION['pseudo'] . ' ! </h2>'; ?>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <h3>Pseudo :</h3> 
-                        <?php
-                        echo $_SESSION['pseudo'];
-                        ?>
                         <br>
                         <div class="getting-started-info"></div>
-                        <br><h3>Argent :&nbsp;</h3>
+                        <br>
                         <?php
-                        echo $_SESSION['argent'];
+                        echo '<h3 style="display:inline;">Argent :</h3> <h4 style="color:#cd7030; display:inline; padding-left:0.2em">' . $_SESSION['argent'] . '</h5>';
                         ?>
-                        <br><h3>XP :&nbsp;</h3>
-                        <?php
-                        echo $_SESSION['xp'];
+                        <br><?php
+                        echo '<h3 style="display:inline;">XP :</h3> <h4 style="color:#cd3030; display:inline; padding-left:0.2em">' . $_SESSION['xp'] . '</h5>';
                         ?>
                     </div>
 
@@ -93,26 +88,31 @@
             </div>
         </section>
         <section class="clean-block clean-info dark" style="height: 133px;background: rgb(255,255,255);">
-            <div class="container">
-                <div class="block-heading" style="height: -26px;">
-                    <h2 class="text-info" style="text-align: center;color: #0c2461;">Leaderboard :</h2>
-                </div>
-                <div class="row justify-content-center">
-                                <?php
-                $reponse = Model::getPDO()->query('SELECT * FROM User ORDER BY xp DESC');
-                $i = 0;
-                while ($donnees = $reponse->fetch() and $i<5) {
-                    $i++;
-                    ?>
-
-                    <?php
-                    
-                    echo '<h4 class="card-title" style="height: 14px; text-align: center;">'. $i . ') ' . $donnees['pseudo'] . '</h4><br><br><br>';
-
-            }
-                $reponse->closeCursor();
-                ?> 
-                </div>
+            <div class="row justify-content-center">
+                <div class="containerl">
+                    <div class="leaderboard">
+                        <div class="headl">
+                            <i class="fas fa-crown"></i>
+                            <h1>Leaderboard</h1>
+                        </div>
+                            <div class="bodyl">
+                                <ol>
+                                    <?php
+                                        $reponse = Model::getPDO()->query('SELECT * FROM User ORDER BY xp DESC');
+                                        $i = 0;
+                                        while ($donnees = $reponse->fetch() and $i<5) {
+                                            $i++;
+                                        
+                                        echo "<li>
+                                             <span>" . $donnees['pseudo'] . "</span>
+                                            <span style='padding-left:5%'>" . $donnees['xp']. "</span>
+                                        </li>";
+                                        }
+                                        $reponse->closeCursor();
+                                    ?>
+                                </ol>
+                            </div>
+                    </div>
                 </div>
             </div>
         </section><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
