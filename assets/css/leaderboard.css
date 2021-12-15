@@ -1,11 +1,10 @@
 /*
  * Reference - https://codepen.io/supah/pen/WwrJpw
  */
-html,
-bodyl {
+.bodyl {
 	height: 100%;
 }
-bodyl {
+.bodyl {
 	color: #333;
 }
 a {
@@ -24,25 +23,29 @@ a {
 
 /* container */
 .containerl {
+	margin-top: 3em;
 	background: linear-gradient(to bottom, #3a404d, #181c26);
-	width: auto;
-	height: auto;
+	width: 30%;
+	height: 100%;
 	border-radius: 5%;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-	position: ;
-	overflow: hidden;
 	max-width: 100%;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }
-
 
 /* head */
 .leaderboard .headl {
-	padding: 2em 1em;
+	padding-top: 1.5em;
+	padding-bottom: 1em;
+	padding-right: 1em;
+	padding-left: 1em;
 	color: snow;
 	font-size: 20px;
 }
-.leaderboard .headl h1 {
-	margin-left: 0.5em;
+.leaderboard h1{
+	text-align: center;
 }
 
 /* body */
@@ -51,23 +54,33 @@ a {
 	font-size: 16px;
 }
 .leaderboard ol {
-	counter-reset: number; /* 定義和初始化計數器 */
+	counter-reset: number;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+	align-self: flex-start;
+	margin-left: -1.5rem;
+	margin-right: 0.5rem;
 }
+
 .leaderboard li {
 	height: auto;
-	width: 200%;
-	padding: 16px;
+	width: auto;
+	padding-top: 1em;
+	padding-left: 1em;
+	padding-bottom: 1em;
 	display: flex;
 	justify-content: flex-start;
 }
-.leaderboard li mark {
+.leaderboard li span {
 	flex-grow: 1;
 	color: snow;
 	background-color: transparent;
 }
 .leaderboard li:before {
-	counter-increment: number; /* 遞增計數器 */
-	content: counter(number) "."; /* 顯示計數器 */
+	counter-increment: number;
+	content: counter(number) ".";
 	margin-right: 0.5em;
 }
 .leaderboard li:nth-child(5) {
@@ -84,4 +97,10 @@ a {
 }
 .leaderboard li:nth-child(1) {
 	background: #4448c2;
+}
+
+.lxp{
+	align-self: flex-end;
+	text-align: end;
+	padding-right: 1em;
 }

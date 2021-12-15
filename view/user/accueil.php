@@ -104,8 +104,8 @@
                                             $i++;
                                         
                                         echo "<li>
-                                             <span>" . $donnees['pseudo'] . "</span>
-                                            <span style='padding-left:5%'>" . $donnees['xp']. "</span>
+                                             <span class='lpseudo'>" . $donnees['pseudo'] . "</span>
+                                            <span class='lxp'>" . $donnees['xp']. "</span>
                                         </li>";
                                         }
                                         $reponse->closeCursor();
@@ -168,7 +168,7 @@
                     </div>
                     </div></div></div>';
 
-                    echo '<p class = "champSondage"><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues :&nbsp;' . $donnees['clics'] . '</small></p></div></div>';
+                    echo '<p class = "champSondage"><br><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues :&nbsp;' . $donnees['clics'] . '</small></p></div></div>';
 
             }
                 $reponse->closeCursor();
@@ -227,7 +227,7 @@
                     </div>
                     </div></div></div>';
 
-                    echo '<p class = "champSondage"><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues :&nbsp;' . $donnees['clics'] . '</small></p></div></div>';
+                    echo '<p class = "champSondage"><br><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues :&nbsp;' . $donnees['clics'] . '</small></p></div></div>';
 
             }
                 $reponse->closeCursor();
