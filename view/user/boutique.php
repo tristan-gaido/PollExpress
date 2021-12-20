@@ -25,7 +25,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                                             <button>Objets Réels</button></h2><br>
                     <div class="row justify-content-center">
                                             <?php
-                                        $reponse = $pdo->query('SELECT * FROM Objet ORDER BY itemID DESC');
+                                        $reponse = $pdo->query('SELECT * FROM Objet ORDER BY type ASC');
                                         $i = 0;
 
                                         while ($donnees = $reponse->fetch() and $i<50) {
@@ -34,86 +34,103 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                                             $i++;
 
                                             if($donnees['type'] == 'Chapeau') {
+                                                $nomcat = 'Chapeau';
                                                 $couleurH = '#c5a030';
                                                 $couleurM = '#ddb74a';
                                                 $couleurB = '#ffc550';
                                             }
-                                            else if($donnees['type'] == 'T-shirt') {
+                                            else if($donnees['type'] == 'tshirt') {
+                                                $nomcat = 'T-shirt';
                                                 $couleurH = '#3a80b0';
                                                 $couleurM = '#30a0f0';
                                                 $couleurB = '#70d0e5';
                                             }
-                                            else if($donnees['type'] == 'Veste') {
+                                            else if($donnees['type'] == 'vest') {
+                                                $nomcat = 'Veste';
                                                 $couleurH = '#3a904a';
                                                 $couleurM = '#3aba40';
                                                 $couleurB = '#80e070';
                                             }
-                                            else if($donnees['type'] == 'Veste') {
+                                            else if($donnees['type'] == 'vest') {
+                                                $nomcat = 'Veste';
                                                 $couleurH = '#3a904a';
                                                 $couleurM = '#3aba40';
                                                 $couleurB = '#80e070';
                                             }
-                                            else if($donnees['type'] == 'Pantalon') {
+                                            else if($donnees['type'] == 'pant') {
+                                                $nomcat = 'Pantalon';
                                                 $couleurH = '#002a80';
                                                 $couleurM = '#2a4090';
                                                 $couleurB = '#4070ea';
                                             }
-                                            else if($donnees['type'] == 'Chaussures') {
+                                            else if($donnees['type'] == 'shoes') {
+                                                $nomcat = 'Chaussure';
                                                 $couleurH = '#4a3525';
                                                 $couleurM = '#6a503a';
                                                 $couleurB = '#a07a55';
                                             }
-                                            else if($donnees['type'] == 'Outil') {
+                                            else if($donnees['type'] == 'tool') {
+                                                $nomcat = 'Outil';
                                                 $couleurH = '#750a0a';
                                                 $couleurM = '#a01a1a';
                                                 $couleurB = '#da3535';
                                             }
-                                            else if($donnees['type'] == 'Coupe de cheveux') {
+                                            else if($donnees['type'] == 'haircut') {
+                                                $nomcat = 'Coupe de cheveux';
                                                 $couleurH = '';
                                                 $couleurM = '';
                                                 $couleurB = '';
                                             }
-                                            else if($donnees['type'] == 'Couleur de cheveux') {
+                                            else if($donnees['type'] == 'hair_color') {
+                                                $nomcat = 'Couleur de cheveux';
                                                 $couleurH = '#ba9a00';
                                                 $couleurM = '#d0ba50';
                                                 $couleurB = '#faf065';
                                             }
-                                            else if($donnees['type'] == 'Badge') {
+                                            else if($donnees['type'] == 'pin') {
+                                                $nomcat = 'Badge';
                                                 $couleurH = '#304555';
                                                 $couleurM = '#507080';
                                                 $couleurB = '#8095b0';
                                             }
-                                            else if($donnees['type'] == 'Collier') {
+                                            else if($donnees['type'] == 'necklace') {
+                                                $nomcat = 'Collier';
                                                 $couleurH = '#306a60';
                                                 $couleurM = '#4ab08a';
                                                 $couleurB = '#5ad0a0';
                                             }
-                                            else if($donnees['type'] == 'Fond d\'ecran') {
+                                            else if($donnees['type'] == 'background') {
+                                                $nomcat = 'Fond d\'ecran';
                                                 $couleurH = '#500560';
                                                 $couleurM = '#801595';
                                                 $couleurB = '#a045ba';
                                             }
-                                            else if($donnees['type'] == 'Banniere') {
+                                            else if($donnees['type'] == 'banner') {
+                                                $nomcat = 'Bannière';
                                                 $couleurH = '#888888';
                                                 $couleurM = '#aaaaaa';
                                                 $couleurB = '#dddddd';
                                             }
-                                            else if($donnees['type'] == 'Charte graphique') {
+                                            else if($donnees['type'] == 'graphics') {
+                                                $nomcat = 'Charte graphique';
                                                 $couleurH = '#8a4080';
                                                 $couleurM = '#a06aa0';
                                                 $couleurB = '#f0a0e0';
                                             }
-                                            else if($donnees['type'] == 'Police') {
+                                            else if($donnees['type'] == 'font') {
+                                                $nomcat = 'Police';
                                                 $couleurH = '#351065';
                                                 $couleurM = '#5a209a';
                                                 $couleurB = '#8a4ae5';
                                             }
-                                            else if($donnees['type'] == 'Titre') {
+                                            else if($donnees['type'] == 'title') {
+                                                $nomcat = 'Titre';
                                                 $couleurH = '#111111';
                                                 $couleurM = '#333333';
                                                 $couleurB = '#555555';
                                             }
-                                            else if($donnees['type'] == 'Couleur de peau') {
+                                            else if($donnees['type'] == 'skin') {
+                                                $nomcat = 'Couleur de peau';
                                                 $couleurH = '#7a350a';
                                                 $couleurM = '#aa5035';
                                                 $couleurB = '#d0553a';
@@ -136,9 +153,9 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
                                                 <div class="card text-center clean-card" style="border: solid; border-color:#ababab;">
                                                       <?php
-                                                echo '<h4 class="card-title" style="height:25px; margin:0px;border-bottom:3px solid; color:white; padding-top:5px; padding-bottom:25px; background-color:' . $couleurH .'; border-bottom-color:#ababab;">' . $donnees['type'] . '</h4>'; //Categorie
+                                                echo '<h4 class="card-title" style="height:25px; margin:0px;border-bottom:3px solid; color:white; padding-top:5px; padding-bottom:25px; background-color:' . $couleurH .'; border-bottom-color:#ababab;">' . $nomcat . '</h4>'; //Categorie
                                                 ?>  
-                                                    <img class="card-img-top w-100 d-block" style="border-radius: 0px; background-color:<?php echo $couleurM;?>"src="./assets/img/<?php echo $donnees['file'] ?>" style="height: 140.234px;">
+                                                    <img class="card-img-top w-100 d-block" style="border-radius: 0px; background-color:<?php echo $couleurM;?>"src="./assets/img/custom/<?php echo $donnees['type'] ?>/<?php echo $donnees['file'] ?>" style="height: 140.234px;">
                                                     <div class="card-body info"  style="height: 120.234px; background-color:<?php echo $couleurM;?>">
                                             <?php
 
@@ -171,26 +188,3 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
         </section>
     </main>
    
-
-       <?php /* <h1>Boutique</h1>
-            <div><strong>Récents :</strong></div><br>
-            <div class = "listeItem">
-            <?php
-                $reponse = $pdo->query('SELECT * FROM Objet ORDER BY itemID DESC');
-                $i = 0;
-                while ($donnees = $reponse->fetch() and $i<5) {
-                    $i++;
-                    ?>
-                    <div class ="objet">
-                    <?php
-                    echo '<p class = "nomObjet">' . $donnees['nom'] . ' :</p>';
-                    echo '<img class="image" src="https://i.imgur.com/FnSfVG1.png">';
-                    echo '<a class = "lien colle " href="https://google.com/fr"><p class="button"> Acheter </p></a>';
-                    echo '<p class = "prix">' . $donnees['prix'] . '</p>';
-                    ?>
-                </div>
-                    <?php
-            }
-                $reponse->closeCursor();
-                ?>
-            </div> */ ?>

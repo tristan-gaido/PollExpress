@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./assets/css/vanilla-zoom.min.css">
     <link rel="stylesheet" href="./assets/css/accueil.css">
     <link rel="stylesheet" href="./assets/css/boutique.css" >
+    <link rel="stylesheet" href="./assets/css/leaderboard.css">
 </head>
 
 <body>
@@ -55,7 +56,7 @@
         </div>    
             <footer class="page-footer dark">
         <div class="footer-copyright">
-            <p>© 2021 PollExpress</p>
+            <p>© 2021 Express</p>
         </div>
     </footer>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>

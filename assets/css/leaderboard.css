@@ -1,0 +1,106 @@
+/*
+ * Reference - https://codepen.io/supah/pen/WwrJpw
+ */
+.bodyl {
+	height: 100%;
+}
+.bodyl {
+	color: #333;
+}
+a {
+	display: inline-block;
+	color: #333;
+	text-decoration: none;
+}
+.blog {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	position: sticky;
+	transform: translateX(-50%);
+	z-index: 1;
+}
+
+/* container */
+.containerl {
+	margin-top: 3em;
+	background: linear-gradient(to bottom, #3a404d, #181c26);
+	width: 30%;
+	height: 100%;
+	border-radius: 5%;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	max-width: 100%;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+/* head */
+.leaderboard .headl {
+	padding-top: 1.5em;
+	padding-bottom: 1em;
+	padding-right: 1em;
+	padding-left: 1em;
+	color: snow;
+	font-size: 20px;
+}
+.leaderboard h1{
+	text-align: center;
+}
+
+/* body */
+.leaderboard .bodyl {
+	color: snow;
+	font-size: 16px;
+}
+.leaderboard ol {
+	counter-reset: number;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+	align-self: flex-start;
+	margin-left: -1.5rem;
+	margin-right: 0.5rem;
+}
+
+.leaderboard li {
+	height: auto;
+	width: auto;
+	padding-top: 1em;
+	padding-left: 1em;
+	padding-bottom: 1em;
+	display: flex;
+	justify-content: flex-start;
+}
+.leaderboard li span {
+	flex-grow: 1;
+	color: snow;
+	background-color: transparent;
+}
+.leaderboard li:before {
+	counter-increment: number;
+	content: counter(number) ".";
+	margin-right: 0.5em;
+}
+.leaderboard li:nth-child(5) {
+	background: #6855fa;
+}
+.leaderboard li:nth-child(4) {
+	background: #574fe0;
+}
+.leaderboard li:nth-child(3) {
+	background: #514dd7;
+}
+.leaderboard li:nth-child(2) {
+	background: #4b4bcd;
+}
+.leaderboard li:nth-child(1) {
+	background: #4448c2;
+}
+
+.lxp{
+	align-self: flex-end;
+	text-align: end;
+	padding-right: 1em;
+}
