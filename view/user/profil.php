@@ -75,11 +75,11 @@ $req2->closeCursor();
                     <h2 class="text-info">Inventaire</h2><br>
                     <div class="row justify-content-center">
                                             <?php
-<<<<<<< HEAD
+
                                         $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE PE__Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
-=======
-                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
->>>>>>> 82fd501152f3b768ff68ff820ac9da23d0fb01de
+
+                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE PE__Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
+
                                         $i = 0;
                                         while ($donnees = $reponse->fetch() and $i<50) {
                                             $i++;
