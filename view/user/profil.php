@@ -45,7 +45,7 @@ $req2->closeCursor();
                         <h3>Équipement</h3> 
                         <?php 
 
-                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN Inventaire ON Objet.itemID = Inventaire.itemID WHERE userID =' . $_SESSION['id'] . ' AND isEquiped = 1 ORDER BY prix ASC');
+                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE userID =' . $_SESSION['id'] . ' AND isEquiped = 1 ORDER BY prix ASC');
                         while ($donnees = $reponse->fetch()){
                             ?>
                                             <div class="col-sm-6 col-lg-4" style="width: 228px;">
@@ -75,7 +75,7 @@ $req2->closeCursor();
                     <h2 class="text-info">Inventaire</h2><br>
                     <div class="row justify-content-center">
                                             <?php
-                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN Inventaire ON Objet.itemID = Inventaire.itemID WHERE Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
+                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
                                         $i = 0;
                                         while ($donnees = $reponse->fetch() and $i<50) {
                                             $i++;
