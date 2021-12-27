@@ -33,7 +33,7 @@ if(!empty($_POST)){ //si le formulaire est vide ne rien faire
       else{
 
         //Verif que le pseudo existe pas déjà
-		$stmt = $pdo->prepare("SELECT * FROM User WHERE pseudo=?");
+		$stmt = $pdo->prepare("SELECT * FROM PE__User WHERE pseudo=?");
 		$stmt->execute([$pseudo]); 
 		$req_pseudo = $stmt->fetch();
 		if ($req_pseudo) {
@@ -55,7 +55,7 @@ if(!empty($_POST)){ //si le formulaire est vide ne rien faire
       }else{
       		
         //On check dans la base de donnée si le mail existe déjà
-		$stmt = $pdo->prepare("SELECT * FROM User WHERE email=?");
+		$stmt = $pdo->prepare("SELECT * FROM PE__User WHERE email=?");
 		$stmt->execute([$email]); 
 		$req_email = $stmt->fetch();
 		if ($req_email) {
@@ -88,12 +88,12 @@ if(!empty($_POST)){ //si le formulaire est vide ne rien faire
         $datecreation = date('Y-m-d H:i:s');
         $token = bin2hex(random_bytes(12));
 
-        $req = $pdo->prepare("INSERT INTO User
+        $req = $pdo->prepare("INSERT INTO PE__User
         SET pseudo = :pseudo, motdepasse = :motdepasse, email = :email, date_creation = :datecreation, argent = 100, isVerified = false, token = :token");
         $req->execute(array('pseudo' => $pseudo, 'motdepasse' => $mdp, 'email' => $email, 'datecreation' => $datecreation, 'token' => $token));
 
 
-        $reqtoken = $pdo->prepare("SELECT * FROM User WHERE email = :email");
+        $reqtoken = $pdo->prepare("SELECT * FROM PE__User WHERE email = :email");
         $reqtoken->execute(array('email' => $email));
         $reqtoken = $reqtoken->fetch();
 

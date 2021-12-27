@@ -33,7 +33,7 @@
       $er_mdp = "Le mot de passe est vide";
     }
     else{
-        $sql = $pdo->prepare("SELECT * FROM User WHERE email=?");
+        $sql = $pdo->prepare("SELECT * FROM PE__User WHERE email=?");
         $sql->execute([$email]); 
         $testtoken = $sql->fetch();
         if($testtoken['confirmation_token']==0){
@@ -44,7 +44,7 @@
 
     $mdp= crypt($mdp, '$6$rounds=5000$pollexpresslesangdelaveine$'); //on crypte le mdp avec la meme clé que pour l'inscription
 
-    $req = $pdo->prepare("SELECT * FROM User WHERE email = :email AND motdepasse = :mdp"); 
+    $req = $pdo->prepare("SELECT * FROM PE__User WHERE email = :email AND motdepasse = :mdp"); 
     $req->execute(array('email' => $email, 'mdp' => $mdp));
     $resultat = $req->fetch();
     //on test si les valeurs du formulaire correspondent a la bdd

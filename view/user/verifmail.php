@@ -20,7 +20,7 @@ if(!isset($id)){
 	}
 
 if($ok){
-	$req = $pdo->prepare("SELECT id FROM User WHERE id = :id AND token = :token");
+	$req = $pdo->prepare("SELECT id FROM PE__User WHERE id = :id AND token = :token");
     $req->execute(array('id' => $id, 'token' => $token));
     $req = $req->fetch();
 
@@ -29,7 +29,7 @@ if($ok){
     	echo 'Mauvais lien';
 
 	}else{
-		$req = $pdo->prepare("UPDATE User SET confirmation_token = :conftoken WHERE id = :id");
+		$req = $pdo->prepare("UPDATE PE__User SET confirmation_token = :conftoken WHERE id = :id");
 		$req->execute(array('id' => $id, 'conftoken' => true));
     	$req = $req->fetch();
 

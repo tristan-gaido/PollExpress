@@ -28,7 +28,7 @@ if(!empty($_POST)){
         } 
 
 		if($ok){
-			$verif_mail = $pdo->prepare("SELECT * FROM User WHERE email = :email");
+			$verif_mail = $pdo->prepare("SELECT * FROM PE__User WHERE email = :email");
 			$verif_mail->execute(array('email' => $email));
     		$verif_mail = $verif_mail->fetch();
 

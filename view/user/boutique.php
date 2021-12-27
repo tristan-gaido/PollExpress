@@ -25,7 +25,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                                             <button>Objets Réels</button></h2><br>
                     <div class="row justify-content-center">
                                             <?php
-                                        $reponse = $pdo->query('SELECT * FROM Objet ORDER BY type ASC');
+                                        $reponse = $pdo->query('SELECT * FROM PE__Objet ORDER BY type ASC');
                                         $i = 0;
 
                                         while ($donnees = $reponse->fetch() and $i<50) {

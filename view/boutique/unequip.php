@@ -8,7 +8,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
   $itemID = $_GET['itemID'];
 
 
-    $sql4 = $pdo->prepare("UPDATE Inventaire SET isEquiped = 0 WHERE userID = :userID AND itemID = :itemID");
+    $sql4 = $pdo->prepare("UPDATE PE__Inventaire SET isEquiped = 0 WHERE userID = :userID AND itemID = :itemID");
     $sql4->execute(array('userID' => $userID, 'itemID' => $itemID));
 
   header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=profil');

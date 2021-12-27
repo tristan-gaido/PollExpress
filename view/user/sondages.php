@@ -39,10 +39,10 @@ if(!empty($_POST)){
         $recherche = htmlentities(strtolower(trim($recherche)));
 
                 if (!isset($tag1) && !isset($tag2) && !isset($tag3) && !isset($tag4)) {
-                $reponse = $pdo->query('SELECT * FROM Sondage WHERE titre LIKE "%' . $recherche . '%"' );
+                $reponse = $pdo->query('SELECT * FROM PE__Sondage WHERE titre LIKE "%' . $recherche . '%"' );
                 }
                 else{
-                $reponse = $pdo->query('SELECT * FROM Sondage WHERE tag1 ="' . $tag . '" OR tag2="' . $tag . '"');
+                $reponse = $pdo->query('SELECT * FROM PE__Sondage WHERE tag1 ="' . $tag . '" OR tag2="' . $tag . '"');
                 }
 
         		echo '<br><br><br><br><br><br><br><div class="row justify-content-center">';
@@ -104,7 +104,7 @@ if(!empty($_POST)){
                 </div>
                 <div class="row justify-content-center">
                     <?php
-                $reponse = $pdo->query('SELECT * FROM Sondage ORDER BY date_creation_sondage DESC');
+                $reponse = $pdo->query('SELECT * FROM PE__Sondage ORDER BY date_creation_sondage DESC');
                 $i = 0;
                 while ($donnees = $reponse->fetch() and $i<5) {
                     $i++;
@@ -163,7 +163,7 @@ if(!empty($_POST)){
                 </div>
                       <div class="row justify-content-center">
             <?php
-                $reponse = $pdo->query('SELECT * FROM Sondage ORDER BY clics DESC');
+                $reponse = $pdo->query('SELECT * FROM PE__Sondage ORDER BY clics DESC');
                 $i = 0;
                 while ($donnees = $reponse->fetch() and $i<5) {
                     $i++;
@@ -223,7 +223,7 @@ if(!empty($_POST)){
                       <div class="row justify-content-center">
             <?php
             
-                $reponse = $pdo->query('SELECT * FROM Sondage ORDER BY titre ASC');
+                $reponse = $pdo->query('SELECT * FROM PE__Sondage ORDER BY titre ASC');
                 $i = 0;
                 while ($donnees = $reponse->fetch()) {
                     ?>

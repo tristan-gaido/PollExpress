@@ -14,7 +14,7 @@ if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
     exit;
 }
 
-$req2 = $pdo->prepare("SELECT COUNT(*) as Stats FROM SondageFait WHERE userID = :userID"); 
+$req2 = $pdo->prepare("SELECT COUNT(*) as Stats FROM PE__SondageFait WHERE userID = :userID"); 
 $req2->execute(array('userID' => $_SESSION['id']));
 $resultat2 = $req2->fetch();
 $req2->closeCursor();
@@ -45,7 +45,7 @@ $req2->closeCursor();
                         <h3>Équipement</h3> 
                         <?php 
 
-                        $reponse = $pdo->query('SELECT * FROM Objet JOIN Inventaire ON Objet.itemID = Inventaire.itemID WHERE userID =' . $_SESSION['id'] . ' AND isEquiped = 1 ORDER BY prix ASC');
+                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN Inventaire ON Objet.itemID = Inventaire.itemID WHERE userID =' . $_SESSION['id'] . ' AND isEquiped = 1 ORDER BY prix ASC');
                         while ($donnees = $reponse->fetch()){
                             ?>
                                             <div class="col-sm-6 col-lg-4" style="width: 228px;">
@@ -75,7 +75,7 @@ $req2->closeCursor();
                     <h2 class="text-info">Inventaire</h2><br>
                     <div class="row justify-content-center">
                                             <?php
-                                        $reponse = $pdo->query('SELECT * FROM Objet JOIN Inventaire ON Objet.itemID = Inventaire.itemID WHERE Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
+                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN Inventaire ON Objet.itemID = Inventaire.itemID WHERE Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
                                         $i = 0;
                                         while ($donnees = $reponse->fetch() and $i<50) {
                                             $i++;

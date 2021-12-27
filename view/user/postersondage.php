@@ -35,7 +35,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
       $er_mdp = "Remplissez un lien pour le sondage";
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM Sondage WHERE lien=?");
+    $stmt = $pdo->prepare("SELECT * FROM PE__Sondage WHERE lien=?");
     $stmt->execute([$lien]); 
     $req_lien = $stmt->fetch();
     if ($req_lien) {
@@ -49,7 +49,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
       $datecreation = date('Y-m-d H');
 
-      $req = $pdo->prepare("INSERT INTO Sondage SET titre = :titre, lien = :lien, tag1 = :tag1, tag2 = :tag2, image = 'r', date_creation_sondage = :datecreation, code = :code");
+      $req = $pdo->prepare("INSERT INTO PE__Sondage SET titre = :titre, lien = :lien, tag1 = :tag1, tag2 = :tag2, image = 'r', date_creation_sondage = :datecreation, code = :code");
       $req->execute(array('titre' => $nomsondage, 'lien' => $lien, 'datecreation' => $datecreation, 'tag1' => $tag1, 'tag2' => $tag2, 'code' => $code));
           
    

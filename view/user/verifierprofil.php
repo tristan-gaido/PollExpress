@@ -4,9 +4,9 @@
 require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
 
-        $req = $pdo->prepare("UPDATE User SET isVerified = true WHERE email = :email");
+        $req = $pdo->prepare("UPDATE PE__User SET isVerified = true WHERE email = :email");
         $req->execute(array('email' => $_SESSION['email']));
-        $req2 = $pdo->prepare("SELECT * FROM User WHERE email = :email");
+        $req2 = $pdo->prepare("SELECT * FROM PE__User WHERE email = :email");
         $req2->execute(array('email' => $_SESSION['email']));
         $resultat = $req2->fetch();
 

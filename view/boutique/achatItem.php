@@ -10,11 +10,11 @@ require_once '/home/ann2/brunetm/public_html/PollExpress/config/BDD.php';
   echo '<br><br><br><br><br> fuihfeuihfei';
 
 
-  $sql = $pdo->prepare("SELECT argent FROM User WHERE id = :userID");
+  $sql = $pdo->prepare("SELECT argent FROM PE__User WHERE id = :userID");
   $sql->execute(array('userID' => $userID));
   $sql = $sql->fetch();
 
-  $sql2 = $pdo->prepare("SELECT prix FROM Objet WHERE itemID = :itemID");
+  $sql2 = $pdo->prepare("SELECT prix FROM PE__Objet WHERE itemID = :itemID");
   $sql2->execute(array('itemID' => $itemID));
   $sql2 = $sql2->fetch();
 
@@ -25,10 +25,10 @@ require_once '/home/ann2/brunetm/public_html/PollExpress/config/BDD.php';
 
     $newargent = $argentUser - $prixItem;
     echo 'NEWARGENT : ' . $newargent;
-    $sql3 = $pdo->prepare("INSERT INTO Inventaire VALUES (:userID , :itemID, 0)");
+    $sql3 = $pdo->prepare("INSERT INTO PE__Inventaire VALUES (:userID , :itemID, 0)");
     $sql3->execute(array('userID' => $userID, 'itemID' => $itemID));
 
-    $sql4 = $pdo->prepare("UPDATE User SET argent = :newargent WHERE id = :userID");
+    $sql4 = $pdo->prepare("UPDATE PE__User SET argent = :newargent WHERE id = :userID");
     $sql4->execute(array('newargent' => $newargent, 'userID' => $userID));
 
     $_SESSION['argent'] = $newargent;
