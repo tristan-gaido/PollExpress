@@ -1,5 +1,4 @@
 <?php
-require_once '/home/ann2/gaidot/public_html/PollExpress/lib/File.php';
 
 require_once File::build_path(array("controller","ControllerUser.php"));
 require_once File::build_path(array("controller","ControllerBoutique.php"));
