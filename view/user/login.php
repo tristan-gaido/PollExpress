@@ -6,7 +6,7 @@
   require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
   if ((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==1)){ //si une session existe déja (= utilisateur connecté) on redirige vers la page d'accueil
-    header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/');
+    header('Location: ./index.php?action=accueil');
     exit;
   }
 
@@ -67,7 +67,7 @@
 
 
 
-      header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php'); //on redirige l'utilisateur vers la page d'accueil
+      header('Location: ./index.php'); //on redirige l'utilisateur vers la page d'accueil
       exit;
     }
   }

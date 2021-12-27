@@ -3,12 +3,12 @@
 require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
 if (!isset($_SESSION['id'])){   //Si l'utilisateur n'est pas connecté ou pas validé, il est redirigé automatiquement vers la page de login
-    header('Location: ./form/login.php');
+    header('Location: ./index.php?action=login');
     exit;
 }
 
 if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
-    header('Location: ./form/login.php');
+    header('Location: ./index.php?action=login');
     exit;
 }
 
@@ -57,7 +57,7 @@ if(!empty($_POST)){
 
                     echo '<p class = "champSondage colle">Posté le :' . $donnees['date_creation_sondage'] . '</p>'; 
 
-                    echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/ExpressPoll/view/user/testclics.php?id=' . $donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><button class="btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a></div>';
+                    echo '<div class="icons"><a href="./index.php?action=testclics&id=' . $donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '"><button class="btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a></div>';
 
                     echo '<p class = "champSondage"><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues :&nbsp;' . $donnees['clics'] . '</small></p></div></div>';
 
@@ -136,7 +136,7 @@ if(!empty($_POST)){
 
                     echo '<p class = "champSondage colle">Posté le :' . $donnees['date_creation_sondage'] . '</p>'; 
 
-                    echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/user/testclics.php?id=' . $donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '" target="_blank"><button class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a>
+                    echo '<div class="icons"><a hhref="./index.php?action=testclics&id=' . $donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '" target="_blank"><button class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a>
                     <div class="modal myModal">
                     <div class="modal-content">
                     <span class="close">&times;</span>
@@ -195,7 +195,7 @@ if(!empty($_POST)){
 
                     echo '<p class = "champSondage colle">Posté le :' . $donnees['date_creation_sondage'] . '</p>'; 
 
-                    echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/user/testclics.php?id=' . $donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '" target="_blank"><button class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a>
+                    echo '<div class="icons"><a href="./index.php?action=testclics&id=' . $donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '" target="_blank"><button class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a>
                     <div class="modal myModal">
                     <div class="modal-content">
                     <span class="close">&times;</span>
@@ -254,7 +254,7 @@ if(!empty($_POST)){
 
                     echo '<p class = "champSondage colle">Posté le :' . $donnees['date_creation_sondage'] . '</p>'; 
 
-                    echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/user/testclics.php?id=' . $donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '" target="_blank"><button class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a>
+                    echo '<div class="icons"><a href="./index.php?action=testclics&id=' . $donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '" target="_blank"><button class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a>
                     <div class="modal myModal">
                     <div class="modal-content">
                     <span class="close">&times;</span>

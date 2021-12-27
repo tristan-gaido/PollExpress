@@ -4,7 +4,7 @@
 require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
   if (!isset($_SESSION['id'])){ //si pas de ssession, on redirige vers la page de login
-    header('Location: ./login.php');
+    header('Location: ./index.php?action=login');
     exit;
   }
 
