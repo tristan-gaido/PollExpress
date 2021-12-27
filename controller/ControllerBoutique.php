@@ -1,7 +1,7 @@
 <?php
 require_once File::build_path(array("model","ModelBoutique.php")); // chargement du modèle
 
-class ControllerUser {
+class ControllerBoutique {
 
     public static function equip() {
         $controller='boutique';

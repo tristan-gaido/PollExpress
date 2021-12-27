@@ -2,7 +2,7 @@
   session_name('pollexpress');
   session_start();
 
-require_once '/home/ann2/brunetm/public_html/PollExpress/config/BDD.php';
+require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
   $userID = $_GET['userID'];
   $itemID = $_GET['itemID'];

@@ -26,7 +26,7 @@ $req2->closeCursor();
         <section class="clean-block clean-info dark" style="background: #dcdde1;">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info" style="color: #0c2461;">Profil</h2>
+                    <h2 class="text-info" style="color: #0c2461;">Przofil</h2>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -45,7 +45,7 @@ $req2->closeCursor();
                         <h3>Équipement</h3> 
                         <?php 
 
-                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN Inventaire ON Objet.itemID = Inventaire.itemID WHERE userID =' . $_SESSION['id'] . ' AND isEquiped = 1 ORDER BY prix ASC');
+                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE userID =' . $_SESSION['id'] . ' AND isEquiped = 1 ORDER BY prix ASC');
                         while ($donnees = $reponse->fetch()){
                             ?>
                                             <div class="col-sm-6 col-lg-4" style="width: 228px;">
@@ -54,7 +54,7 @@ $req2->closeCursor();
                                             <?php
                                             echo '<h4 class="card-title" style="height: 25px;">' . $donnees['nom'] . '</h4>';
 
-                                            echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/boutique/unequip.php?itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Déséquiper</button></a></div></div></div></div>';
+                                            echo '<div class="icons"><a href="./index.php?controller=boutique&action=unequip&itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Déséquiper</button></a></div></div></div></div>';
 
                                     }
                                         $reponse->closeCursor();
@@ -75,7 +75,7 @@ $req2->closeCursor();
                     <h2 class="text-info">Inventaire</h2><br>
                     <div class="row justify-content-center">
                                             <?php
-                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN Inventaire ON Objet.itemID = Inventaire.itemID WHERE Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
+                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE PE__Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
                                         $i = 0;
                                         while ($donnees = $reponse->fetch() and $i<50) {
                                             $i++;
@@ -86,7 +86,7 @@ $req2->closeCursor();
                                             <?php
                                             echo '<h4 class="card-title" style="height: 25px;">' . $donnees['nom'] . '</h4>';
 
-                                            echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/boutique/equip.php?itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Équiper</button></a></div></div></div></div>';
+                                            echo '<div class="icons"><a href="./index.php?controller=boutique&action=equip&itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Équiper</button></a></div></div></div></div>';
 
                                     }
                                         $reponse->closeCursor();
