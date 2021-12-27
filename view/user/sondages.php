@@ -194,8 +194,9 @@ if(!empty($_POST)){
                     echo '<p class="card-text">' . $donnees['tag1'] . '⠀⠀' . $donnees['tag2'] . '</p>';
 
                     echo '<p class = "champSondage colle">Posté le :' . $donnees['date_creation_sondage'] . '</p>'; 
+                    ?>
 
-                    echo '<div class="icons"><a href="./index.php?action=testclics&id=' . $donnees['id_sondage'] . '&lien=' . $donnees['lien'] . '" target="_blank"><button class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a>
+                    <div class="icons"><a href="./index.php?action=testclics&id= <?php $donnees['id_sondage'] ?>&lien= <?php $donnees['lien'] ?>" target="_blank"><button class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a>
                     <div class="modal myModal">
                     <div class="modal-content">
                     <span class="close">&times;</span>

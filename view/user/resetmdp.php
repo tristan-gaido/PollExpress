@@ -45,14 +45,14 @@ if(!empty($_POST)){
 
     				
 			        $contenu = '<p>Bonjour ' . $verif_mail['pseudo'] . ',</p><br>
-			                    <p>Cliquez ici pour réinitialiser votre mot de passe : <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/form/newmdp.php?id=' . $verif_mail['id'] . '&token=' . $verif_mail['token'] . '">Reinitialiser votre mot de passe</a><p>';
+			                    <p>Cliquez ici pour réinitialiser votre mot de passe : <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=newmdp&?id=' . $verif_mail['id'] . '&token=' . $verif_mail['token'] . '">Reinitialiser votre mot de passe</a><p>';
 			        mail($to, $objet, $contenu, $header);
 
 			    }
 
 			
 
-			        header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=redirectionmdp'); //redirection vers la page index.php
+			        header('Location: ./index.php?action=redirectionmdp'); //redirection vers la page index.php
 			        exit;
 			    }
 		}

@@ -34,7 +34,7 @@ if($ok){
     	$req = $req->fetch();
 
     	echo 'Compte validé';
-		header('Location: ../form/login.php'); //on redirige l'utilisateur vers la page d'accueil
+		header('Location: ./index.php?action=login'); //on redirige l'utilisateur vers la page d'accueil
     	exit;
 
     }

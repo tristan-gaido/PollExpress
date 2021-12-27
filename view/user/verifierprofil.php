@@ -11,7 +11,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
         $resultat = $req2->fetch();
 
         $_SESSION['isVerified'] = htmlentities($resultat['isVerified']);
-		header('Location: ../index.php');
+		header('Location: ./index.php');
 		exit;
 
 ?>
