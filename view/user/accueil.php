@@ -27,12 +27,12 @@
 
     $id_sondage = $_COOKIE['CodeSondage'];
 
-    $req = $pdo->prepare("SELECT * FROM Sondage WHERE code = :code"); 
+    $req = $pdo->prepare("SELECT * FROM PE__Sondage WHERE code = :code"); 
     $req->execute(array('code' => $code));
     $resultat = $req->fetch();
     $sondageStat = $resultat['id_sondage'];
 
-    $req2 = $pdo->prepare("INSERT INTO SondageFait (userID, sondageID) VALUES (:userID , :sondageID)"); 
+    $req2 = $pdo->prepare("INSERT INTO PE__SondageFait (userID, sondageID) VALUES (:userID , :sondageID)"); 
     $req2->execute(array('userID' => $_SESSION['id'], 'sondageID' => $sondageStat));
     $resultat2 = $req2->fetch();
 
@@ -43,7 +43,7 @@
     if ($ok){
         $argent = $_SESSION['argent'] + 50;
         $xp = $_SESSION['xp'] + 500;
-        $req2 = $pdo->prepare("INSERT INTO User (argent, xp) VALUES (:argent , :xp) WHERE id = :id"); 
+        $req2 = $pdo->prepare("INSERT INTO PE__User (argent, xp) VALUES (:argent , :xp) WHERE id = :id"); 
         $req2->execute(array('argent' => $argent, 'xp' => $xp, 'id' => $_SESSION['id']));
         $resultat2 = $req2->fetch();
 
@@ -98,7 +98,7 @@
                             <div class="bodyl">
                                 <ol>
                                     <?php
-                                        $reponse = Model::getPDO()->query('SELECT * FROM User ORDER BY xp DESC');
+                                        $reponse = Model::getPDO()->query('SELECT * FROM PE__User ORDER BY xp DESC');
                                         $i = 0;
                                         while ($donnees = $reponse->fetch() and $i<5) {
                                             $i++;
@@ -123,7 +123,7 @@
                 </div>
                 <div class="row justify-content-center">
                                 <?php
-                $reponse = Model::getPDO()->query('SELECT * FROM Sondage ORDER BY date_creation_sondage DESC');
+                $reponse = Model::getPDO()->query('SELECT * FROM PE__Sondage ORDER BY date_creation_sondage DESC');
                 $i = 0;
                 while ($donnees = $reponse->fetch() and $i<5) {
                     $i++;
@@ -182,7 +182,7 @@
                 </div>
                       <div class="row justify-content-center">
                         <?php
-                                $reponse = Model::getPDO()->query('SELECT * FROM Sondage ORDER BY clics DESC');
+                                $reponse = Model::getPDO()->query('SELECT * FROM PE__Sondage ORDER BY clics DESC');
                                 $i = 0;
                 while ($donnees = $reponse->fetch() and $i<5) {
                     $i++;

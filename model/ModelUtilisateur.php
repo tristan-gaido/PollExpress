@@ -6,7 +6,7 @@ class ModelUtilisateur {
 
      public static function getAllSondages() {
         try {
-        $rep = Model::getPDO()->query('SELECT * FROM Sondage WHERE titre = "daz"');
+        $rep = Model::getPDO()->query('SELECT * FROM PE__Sondage WHERE titre = "daz"');
         $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
         return $rep->fetchAll();
             return $rep->fetchAll();
