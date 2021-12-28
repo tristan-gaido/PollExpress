@@ -6,7 +6,7 @@ class ModelBoutique {
 
      public static function getAllItems() {
         try {
-        $rep = Model::getPDO()->query('SELECT * FROM PE__Objets');
+        $rep = Model::getPDO()->query('SELECT * FROM PE__Objet ORDER BY type ASC');
         $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelBoutique');
         return $rep->fetchAll();
             return $rep->fetchAll();
@@ -19,4 +19,6 @@ class ModelBoutique {
             die();
         }
     }
+
+
 }

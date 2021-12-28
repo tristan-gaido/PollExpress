@@ -1,18 +1,16 @@
 
 <?php
-    session_name('pollexpress');
-    session_start();
 
 require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
 
     if (!isset($_SESSION['id'])){   //Si l'utilisateur n'est pas connecté ou pas validé, il est redirigé automatiquement vers la page de login
-    header('Location: ../form/login.php');
+    header('Location: ./index.php?action=login');
     exit;
   }
 
   if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
-        header('Location: ../form/login.php');
+        header('Location: ./index.php?action=login');
         exit;
   }
 ?>
@@ -25,111 +23,106 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                                             <button>Objets Réels</button></h2><br>
                     <div class="row justify-content-center">
                                             <?php
-                                        $reponse = $pdo->query('SELECT * FROM PE__Objet ORDER BY type ASC');
-                                        $i = 0;
 
-                                        while ($donnees = $reponse->fetch() and $i<50) {
-
-
-                                            $i++;
-
-                                            if($donnees['type'] == 'Chapeau') {
+                                        foreach($liste_objet as $donnees) {
+    
+                                            if($donnees->get("type") == 'Chapeau') {
                                                 $nomcat = 'Chapeau';
                                                 $couleurH = '#c5a030';
                                                 $couleurM = '#ddb74a';
                                                 $couleurB = '#ffc550';
                                             }
-                                            else if($donnees['type'] == 'tshirt') {
+                                            else if($donnees->get("type") == 'tshirt') {
                                                 $nomcat = 'T-shirt';
                                                 $couleurH = '#3a80b0';
                                                 $couleurM = '#30a0f0';
                                                 $couleurB = '#70d0e5';
                                             }
-                                            else if($donnees['type'] == 'vest') {
+                                            else if($donnees->get("type") == 'vest') {
                                                 $nomcat = 'Veste';
                                                 $couleurH = '#3a904a';
                                                 $couleurM = '#3aba40';
                                                 $couleurB = '#80e070';
                                             }
-                                            else if($donnees['type'] == 'vest') {
+                                            else if($donnees->get("type") == 'vest') {
                                                 $nomcat = 'Veste';
                                                 $couleurH = '#3a904a';
                                                 $couleurM = '#3aba40';
                                                 $couleurB = '#80e070';
                                             }
-                                            else if($donnees['type'] == 'pant') {
+                                            else if($donnees->get("type") == 'pant') {
                                                 $nomcat = 'Pantalon';
                                                 $couleurH = '#002a80';
                                                 $couleurM = '#2a4090';
                                                 $couleurB = '#4070ea';
                                             }
-                                            else if($donnees['type'] == 'shoes') {
+                                            else if($donnees->get("type") == 'shoes') {
                                                 $nomcat = 'Chaussure';
                                                 $couleurH = '#4a3525';
                                                 $couleurM = '#6a503a';
                                                 $couleurB = '#a07a55';
                                             }
-                                            else if($donnees['type'] == 'tool') {
+                                            else if($donnees->get("type") == 'tool') {
                                                 $nomcat = 'Outil';
                                                 $couleurH = '#750a0a';
                                                 $couleurM = '#a01a1a';
                                                 $couleurB = '#da3535';
                                             }
-                                            else if($donnees['type'] == 'haircut') {
+                                            else if($donnees->get("type") == 'haircut') {
                                                 $nomcat = 'Coupe de cheveux';
                                                 $couleurH = '';
                                                 $couleurM = '';
                                                 $couleurB = '';
                                             }
-                                            else if($donnees['type'] == 'hair_color') {
+                                            else if($donnees->get("type") == 'hair_color') {
                                                 $nomcat = 'Couleur de cheveux';
                                                 $couleurH = '#ba9a00';
                                                 $couleurM = '#d0ba50';
                                                 $couleurB = '#faf065';
                                             }
-                                            else if($donnees['type'] == 'pin') {
+                                            else if($donnees->get("type") == 'pin') {
                                                 $nomcat = 'Badge';
                                                 $couleurH = '#304555';
                                                 $couleurM = '#507080';
                                                 $couleurB = '#8095b0';
                                             }
-                                            else if($donnees['type'] == 'necklace') {
+                                            else if($donnees->get("type") == 'necklace') {
                                                 $nomcat = 'Collier';
                                                 $couleurH = '#306a60';
                                                 $couleurM = '#4ab08a';
                                                 $couleurB = '#5ad0a0';
                                             }
-                                            else if($donnees['type'] == 'background') {
+                                            else if($donnees->get("type") == 'background') {
                                                 $nomcat = 'Fond d\'ecran';
                                                 $couleurH = '#500560';
                                                 $couleurM = '#801595';
                                                 $couleurB = '#a045ba';
                                             }
-                                            else if($donnees['type'] == 'banner') {
+                                            else if($donnees->get("type") == 'banner') {
                                                 $nomcat = 'Bannière';
                                                 $couleurH = '#888888';
                                                 $couleurM = '#aaaaaa';
                                                 $couleurB = '#dddddd';
                                             }
-                                            else if($donnees['type'] == 'graphics') {
+                                            else if($donnees->get("type") == 'graphics') {
                                                 $nomcat = 'Charte graphique';
                                                 $couleurH = '#8a4080';
                                                 $couleurM = '#a06aa0';
                                                 $couleurB = '#f0a0e0';
                                             }
-                                            else if($donnees['type'] == 'font') {
+                                            else if($donnees->get("type") == 'font') {
                                                 $nomcat = 'Police';
                                                 $couleurH = '#351065';
                                                 $couleurM = '#5a209a';
                                                 $couleurB = '#8a4ae5';
                                             }
-                                            else if($donnees['type'] == 'title') {
+                                            else if($donnees->get("type") == 'title') {
                                                 $nomcat = 'Titre';
                                                 $couleurH = '#111111';
                                                 $couleurM = '#333333';
                                                 $couleurB = '#555555';
                                             }
-                                            else if($donnees['type'] == 'skin') {
+                                            else if($donnees->get("type") == 'skin') {
                                                 $nomcat = 'Couleur de peau';
                                                 $couleurH = '#7a350a';
                                                 $couleurM = '#aa5035';

@@ -3,12 +3,12 @@
     require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
     if (!isset($_SESSION['id'])){   //Si l'utilisateur n'est pas connecté ou pas validé, il est redirigé automatiquement vers la page de login
-    header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=login');
+    header('Location: ./index.php?action=login');
     exit;
   }
 
   if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
-        header('Location: https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=login');
+        header('Location: ./index.php?action=login');
         exit;
   }
 
@@ -160,7 +160,7 @@
                     <div class="modal-content">
                     <span class="close">&times;</span>
                     <form method="post">                          
-                            <div class="mb-3"><label class="form-label" for="code"><strong>Entreez le code du sondage</strong><br></label>
+                            <div class="mb-3"><label class="form-label" for="code"><strong>Entrez le code du sondage</strong><br></label>
                               <input class="form-control item" type="text" id="code" placeholder="Code du sondage" name="code"></div>                       
                             <div class="mb-3">                                
                             <div class="mb-3" style="width: 435px;height: -65px;margin: 20px;padding: 0px;"></div><button class="btn btn-primary text-center" name="code" type="submit" style="background: rgb(12,36,97);border-radius: 13px;border-color: rgb(12,36,97);margin: 5px;height: 39px;padding: 7px 12px;transform: scale(1.13);font-size: 14px;font-weight: bold;width: 130.344px;">Envoyer</button>

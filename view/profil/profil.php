@@ -1,16 +1,14 @@
 <?php
-session_name('pollexpress');
-session_start();
 
 require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
 if (!isset($_SESSION['id'])){   //Si l'utilisateur n'est pas connecté ou pas validé, il est redirigé automatiquement vers la page de login
-    header('Location: ../form/login.php');
+    header('Location: ./index.php?action=login');
     exit;
 }
 
 if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
-    header('Location: ../form/login.php');
+    header('Location: ./index.php?action=login');
     exit;
 }
 
@@ -45,8 +43,8 @@ $req2->closeCursor();
                         <h3>Équipement</h3> 
                         <?php 
 
-                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN Inventaire ON Objet.itemID = Inventaire.itemID WHERE userID =' . $_SESSION['id'] . ' AND isEquiped = 1 ORDER BY prix ASC');
-                        while ($donnees = $reponse->fetch()){
+                        
+                        foreach($liste_Equipement as $donnees) {
                             ?>
                                             <div class="col-sm-6 col-lg-4" style="width: 228px;">
                                                 <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="./assets/img/<?php echo $donnees['file'] ?>" style="height: 120.234px;">
@@ -54,16 +52,14 @@ $req2->closeCursor();
                                             <?php
                                             echo '<h4 class="card-title" style="height: 25px;">' . $donnees['nom'] . '</h4>';
 
-                                            echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/boutique/unequip.php?itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Déséquiper</button></a></div></div></div></div>';
+                                            echo '<div class="icons"><a href="./index.php?controller=profil&action=unequip&itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Déséquiper</button></a></div></div></div></div>';
 
                                     }
-                                        $reponse->closeCursor();
                                         
 
 
                         ?>
                         <br><br><br>
-
 
                     </div>
                 </div>
@@ -75,7 +71,11 @@ $req2->closeCursor();
                     <h2 class="text-info">Inventaire</h2><br>
                     <div class="row justify-content-center">
                                             <?php
-                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN Inventaire ON Objet.itemID = Inventaire.itemID WHERE Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
+
+                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE PE__Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
+
+                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE PE__Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
+
                                         $i = 0;
                                         while ($donnees = $reponse->fetch() and $i<50) {
                                             $i++;
@@ -86,7 +86,7 @@ $req2->closeCursor();
                                             <?php
                                             echo '<h4 class="card-title" style="height: 25px;">' . $donnees['nom'] . '</h4>';
 
-                                            echo '<div class="icons"><a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/view/boutique/equip.php?itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Équiper</button></a></div></div></div></div>';
+                                            echo '<div class="icons"><a href="./index.php?controller=profil&action=equip&itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Équiper</button></a></div></div></div></div>';
 
                                     }
                                         $reponse->closeCursor();
