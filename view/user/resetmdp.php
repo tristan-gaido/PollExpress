@@ -1,89 +1,29 @@
-<?php
-session_name('pollexpress');
-session_start();
-
-require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
-
-
-if(!empty($_POST)){
-	extract($_POST);
-	$ok = true;
-
-	if (isset($_POST['resetmdp'])){
-		$email = htmlentities(strtolower(trim($email)));
-
-
-		if(empty($email)){
-			$ok = false;
-			$er_email = "Email vide";
-		}
-
-		$stmt = $pdo->prepare("SELECT * FROM User WHERE email=?");
-		$stmt->execute([$email]); 
-		$req_email = $stmt->fetch();
-		
-		if (!$req_email) {
-			$ok = false;
-			$er_email = "Aucun compte avec cet email";
-        } 
-
-		if($ok){
-			$verif_mail = $pdo->prepare("SELECT * FROM PE__User WHERE email = :email");
-			$verif_mail->execute(array('email' => $email));
-    		$verif_mail = $verif_mail->fetch();
-
-    		if(isset($verif_mail['email'])){
-  				
-    				$objet = 'Nouveau mot de passe';
-    				$to = $verif_mail['email'];
-
-    				$header = "From: NOM_DE_LA_PERSONNE <no-reply@test.com> \n";
-    				$header .= "Reply-To: ".$to."\n";
-    				$header .= "MIME-version: 1.0\n";
-    				$header .= "Content-type: text/html; charset=utf-8\n";
-    				$header .= "Content-Transfer-Encoding: 8bit";
-
-    				
-			        $contenu = '<p>Bonjour ' . $verif_mail['pseudo'] . ',</p><br>
-			                    <p>Cliquez ici pour réinitialiser votre mot de passe : <a href="https://webinfo.iutmontp.univ-montp2.fr/~gaidot/PollExpress/index.php?action=newmdp&?id=' . $verif_mail['id'] . '&token=' . $verif_mail['token'] . '">Reinitialiser votre mot de passe</a><p>';
-			        mail($to, $objet, $contenu, $header);
-
-			    }
-
-			
-
-			        header('Location: ./index.php?action=redirectionmdp'); //redirection vers la page index.php
-			        exit;
-			    }
-		}
-
-	}
-
-
-?>
-
-<!DOCTYPE html>
-<html lang="fr">
-          <head>
-                    <meta charset="utf-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <title>Mot de passe oublié</title>
-          </head>
-          <body>
-                    <div>Mot de passe oublié</div>
-                    <form method="post">
-                              <?php
-                                        if (isset($er_email)){
-                              ?>
-                                        <div><?= $er_email ?></div>
-                              <?php         
-                                        }
-                              ?>
-                              <input type="email" placeholder="Adresse email" name="email" value="<?php if(isset($email)){ echo $email; }?>" required>
-                              <button type="submit" name="resetmdp">Envoyer</button>
-                    </form>
-                                    <div></div><small>Revenir sur la <a href="./index.php?action=register">page d'inscription</a></small>
-
-          </body>
-</html>
+                    <body>
+                              <section class="clean-block clean-form dark" style="height: 830.188px;">
+                                      <div class="container text-start" style="height: 459px;">
+                                          <div class="block-heading" style="height: -5px;">
+                                              <h2 class="text-info" style="text-align: center;"><strong>Mot de passe oublié :</strong></h2>
+                                          </div>
+                                          <p style="text-align: center;">Entrez l'email de votre compte pour réinitialiser votre mot de passe.<br></p>
+                              <form method="post" action="./index.php?action=resetmdp">
+                                   <?php
+                                            if (isset($er_email)){
+                                  ?>
+                                            <div><?= $er_email ?></div>
+                                  <?php         
+                                            }
+                                  ?>
+                                        <div class="mb-3">
+                                        <label class="form-label" for="email"><b>Adresse email</b></label>
+                            <input class="form-control item" type="email" placeholder="Adresse email" name="email" value="<?php if(isset($email)){ echo $email; }?>" required></div>
+                            <div class="mb-3">
+                            
+                            <div class="mb-3" style="width: 435px;height: -65px;margin: 20px;padding: 0px;">
+                                        <button class="btn btn-primary text-center" name="resetmdp" type="submit" style="background: rgb(12,36,97);border-radius: 13px;border-color: rgb(12,36,97);margin: 5px;height: 39px;padding: 7px 12px;transform: scale(1.13);font-size: 14px;font-weight: bold;width: 130.344px;">Envoyer</button></div>
+                                          <small>Revenir sur la <a href="./index.php?action=register">page d'inscription</a></small>
+                              </form>
+                            </div>
+                              
+                          </div>
+                          </section>
+                    </body>

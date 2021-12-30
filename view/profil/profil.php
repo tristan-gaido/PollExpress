@@ -1,6 +1,4 @@
 <?php
-session_name('pollexpress');
-session_start();
 
 require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
@@ -23,22 +21,19 @@ $req2->closeCursor();
 ?>
 
     <main class="page landing-page">
-        <section class="clean-block clean-info dark" style="background: #dcdde1;">
+        <section class="clean-block clean-info dark" style="background: #dcdde1; padding-top: 80px;">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info" style="color: #0c2461;">Profil</h2>
+                    <h2 class="text-info" style="color: #0c2461; ">Profil</h2>
                 </div>
                 <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <h3>Pseudo :</h3> <?php echo $_SESSION['pseudo'];?>
+                    <div class="col-md-6" style="width: 1000px">
+                        <h3 >Pseudo : <?php echo $_SESSION['pseudo'];?></h3> 
                         <div class="getting-started-info"></div>
-                        <h3>Argent :&nbsp;</h3>
-                        <?php
-                        echo $_SESSION['argent'];
-                        ?>
-                        <h3>Email :</h3> <?php echo $_SESSION['email'];?>
-                        <h3>Date de création du compte :</h3> <?php echo $_SESSION['date'];?>
-                        <h3>Nombre de sondages répondus :</h3> <?php echo $resultat2['Stats'];;?>
+                        <h3>Argent : <?php echo $_SESSION['argent'];?></h3>
+                        <h3>Email : <?php echo $_SESSION['email'];?> </h3>
+                        <h3>Date de création du compte : <?php echo $_SESSION['date']; ?> </h3>
+                        <h3>Nombre de sondages répondus : <?php echo $resultat2['Stats']; ?></h3>
 
                         <br><br><br>
 
@@ -54,7 +49,7 @@ $req2->closeCursor();
                                             <?php
                                             echo '<h4 class="card-title" style="height: 25px;">' . $donnees['nom'] . '</h4>';
 
-                                            echo '<div class="icons"><a href="./index.php?controller=boutique&action=unequip&itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Déséquiper</button></a></div></div></div></div>';
+                                            echo '<div class="icons"><a href="./index.php?controller=profil&action=unequip&itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Déséquiper</button></a></div></div></div></div>';
 
                                     }
                                         $reponse->closeCursor();
@@ -63,7 +58,6 @@ $req2->closeCursor();
 
                         ?>
                         <br><br><br>
-
 
                     </div>
                 </div>
@@ -78,19 +72,17 @@ $req2->closeCursor();
 
                                         $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE PE__Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
 
-                                        $reponse = $pdo->query('SELECT * FROM PE__Objet JOIN PE__Inventaire ON PE__Objet.itemID = PE__Inventaire.itemID WHERE PE__Inventaire.isEquiped = 0 AND userID =' . $_SESSION['id'] . ' ORDER BY prix ASC');
-
                                         $i = 0;
                                         while ($donnees = $reponse->fetch() and $i<50) {
                                             $i++;
                                             ?>
-                                            <div class="col-sm-6 col-lg-4" style="width: 228px;">
-                                                <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="./assets/img/<?php echo $donnees['file'] ?>" style="height: 120.234px;">
+                                            <div class="col-sm-6 col-lg-4" style="width: 228px; padding-top: 20px;">
+                                                <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="./assets/img/<?php echo $donnees['file'] ?>" style="height: 140.234px; padding: 10px">
                                                     <div class="card-body info" style="height: 160.234px;">
                                             <?php
                                             echo '<h4 class="card-title" style="height: 25px;">' . $donnees['nom'] . '</h4>';
 
-                                            echo '<div class="icons"><a href="./index.php?controller=boutique&action=equip&itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Équiper</button></a></div></div></div></div>';
+                                            echo '<div class="icons"><a href="./index.php?controller=profil&action=equip&itemID=' . $donnees['itemID'] . '&userID=' . $_SESSION['id'] . '"><button class="btn btn-primary" data-bss-hover-animate="pulse" type="button" style="width: 138px;height: 39px;font-size: 14px;background: #2e86de;">Équiper</button></a></div></div></div></div>';
 
                                     }
                                         $reponse->closeCursor();

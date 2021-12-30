@@ -1,79 +1,3 @@
-<?php
-  session_name('pollexpress');
-  session_start();
-require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
-
-  if (!isset($_SESSION['id'])){ //si pas de ssession, on redirige vers la page de login
-    header('Location: ./index.php?action=login');
-    exit;
-  }
-
-  
-  if(!empty($_POST)){ // Si la variable "$_Post" contient des informations alors on les traites
-    extract($_POST); //extrait les valeurs du form en 2 variables $nomsondage $lien
-    
-    $ok = true;
-
-
-  if (isset($_POST['postersondage'])){ //test pour le formulaire "inscription"
-
-    //htmlentites = pour éviter les injections, trim = enleve les espaces au début et a la fin
-    $nomsondage = htmlentities(trim($nomsondage));
-        $lien = trim($lien);
-        $tag1 = htmlentities(trim($tag1));
-        $tag2 = htmlentities(trim($tag2));
-        $code = htmlentities(trim($code));
-
-
-        if(empty($nomsondage)){ //test si email est vide
-      $ok = false;
-      $er_nomsondage = "Remplissez un titre pour le sondage";
-    }
-
-    if(empty($lien)){ //test si le mdp est vide
-      $ok = false;
-      $er_mdp = "Remplissez un lien pour le sondage";
-    }
-
-    $stmt = $pdo->prepare("SELECT * FROM PE__Sondage WHERE lien=?");
-    $stmt->execute([$lien]); 
-    $req_lien = $stmt->fetch();
-    if ($req_lien) {
-      $ok = false;
-      $er_lien = "Ce sondage existe déjà";
-        }
-
-
-
-    if ($ok){ //si tout est valide, alors on enregistre le sondage dans la BDD
-
-      $datecreation = date('Y-m-d H');
-
-      $req = $pdo->prepare("INSERT INTO PE__Sondage SET titre = :titre, lien = :lien, tag1 = :tag1, tag2 = :tag2, image = 'r', date_creation_sondage = :datecreation, code = :code");
-      $req->execute(array('titre' => $nomsondage, 'lien' => $lien, 'datecreation' => $datecreation, 'tag1' => $tag1, 'tag2' => $tag2, 'code' => $code));
-          
-   
-          header('Location: ./index.php'); //redirection vers la page index.php
-          exit;
-    }
-  }
-}
-?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Poster un sondage</title>
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="../assets/css/vanilla-zoom.min.css">
-</head>
-
 <body>
     <section class="clean-block clean-form dark" style="height: 830.188px;">
         <div class="container text-start" style="height: 459px;">
@@ -81,7 +5,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                 <h2 class="text-info" style="text-align: center;"><strong>Poster un sondage</strong></h2>
             </div>
             <p style="text-align: center;">Remplissez le formulaire pour poster un sondage sur PollExpress<br></p>
-            <form method="post">
+            <form method="post" action="./index.php?action=postersondage">
               <?php
       if (isset($er_nomsondage)){ 
       ?>
@@ -106,9 +30,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
                 <div class="mb-3">
                   <label class="form-label" for="code"><strong>Code du sondage</strong><br></label>
-                  <input class="form-control" type="text" id="code" name="code" placeholder="Code du sondage" value="<?php if(isset($code)){ echo $code; }?>" required></div>
-
-
+                  <input class="form-control" type="text" id="code" name="code" placeholder="Code du sondage" maxlength="20" value="<?php if(isset($code)){ echo $code; }?>" required></div>
         <br>
 
                 <select name="tag1" >
@@ -126,16 +48,21 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                 <option value="Gestion">Gestion</option>
             </select>
             <br>
-            <br>
-        <label for="image"><b>Image</b></label>
-          <br>
-        <input type="file" placeholder="Lien du sondage" name="image">
-        <br>
-                <br>
 
-            <div class="mb-3" style="width: 435px;height: -65px;margin: 20px;padding: 0px;"></div><button class="btn btn-primary text-center" name="postersondage" type="submit" style="background: rgb(12,36,97);border-radius: 13px;border-color: rgb(12,36,97);margin: 5px;height: 39px;padding: 7px 12px;transform: scale(1.13);font-size: 14px;font-weight: bold;width: 130.344px;">Envoyer</button>
+            <div class="mb-3" style="width: 435px;height: -65px;margin: 20px;padding: 0px;"></div><button id="btnSondage" class="btn btn-primary text-center" name="postersondage" type="submit" style="background: rgb(12,36,97);border-radius: 13px;border-color: rgb(12,36,97);margin: 5px;height: 39px;padding: 7px 12px;transform: scale(1.13);font-size: 14px;font-weight: bold;width: 130.344px;">Envoyer</button>
               <p><a href="./index.php">Retour a l'accueil</a></p>
             </div>
     </form>
   </body>
-</html>
+  <style type="text/css">
+    #btnSondage {
+      transition-duration: 0.25s !important;
+    }
+
+    #btnSondage:hover {
+      background-color: #3B99E0 !important;
+      border-color: white !important; /* Green */
+      color: white !important;
+    }
+    
+  </style>

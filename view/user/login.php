@@ -1,93 +1,3 @@
-<?php
-
-  session_name('pollexpress');
-  //session_start();
-
-  require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
-
-  if ((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==1)){ //si une session existe déja (= utilisateur connecté) on redirige vers la page d'accueil
-    header('Location: ./index.php?action=accueil');
-    exit;
-  }
-
-  
-  if(!empty($_POST)){ // Si la variable "$_Post" contient des informations alors on les traites
-    extract($_POST); //extrait les valeurs du form en 2 variables $email $mdp
-    
-    $ok = true;
-
-
-  if (isset($_POST['connexion'])){ //test pour le formulaire "inscription"
-
-    //htmlentites = pour éviter les injections, trim = enleve les espaces au début et a la fin
-    $email = htmlentities(strtolower(trim($email)));
-    $mdp = trim($mdp);
-
-    if(empty($email)){ //test si email est vide
-      $ok = false;
-      $er_email = "L'email est vide";
-    }
-
-    if(empty($mdp)){ //test si le mdp est vide
-      $ok = false;
-      $er_mdp = "Le mot de passe est vide";
-    }
-    else{
-        $sql = $pdo->prepare("SELECT * FROM PE__User WHERE email=?");
-        $sql->execute([$email]); 
-        $testtoken = $sql->fetch();
-        if($testtoken['confirmation_token']==0){
-          $ok = false;
-          $er_mdp = "Votre compte n'est pas validé. Veuillez cliquer sur le lien dans votre boite mail.";
-        }
-      }
-
-    $mdp= crypt($mdp, '$6$rounds=5000$pollexpresslesangdelaveine$'); //on crypte le mdp avec la meme clé que pour l'inscription
-
-    $req = $pdo->prepare("SELECT * FROM PE__User WHERE email = :email AND motdepasse = :mdp"); 
-    $req->execute(array('email' => $email, 'mdp' => $mdp));
-    $resultat = $req->fetch();
-    //on test si les valeurs du formulaire correspondent a la bdd
-
-    if (!$resultat) { //si la requete échoue
-      $ok = false;
-      $er_email = "Le mail ou le mot de passe est incorrect";
-    }
-
-    if ($ok){
-     //si tout est valide, alors on charge une session avec les attributs de la requete
-      $_SESSION['id'] = $resultat['id']; 
-      $_SESSION['pseudo'] = htmlentities($resultat['pseudo']); //htmlentities pour éviter les injections html/php
-      $_SESSION['email'] = htmlentities($resultat['email']);
-      $_SESSION['isVerified'] = htmlentities($resultat['isVerified']);
-      $_SESSION['argent'] = htmlentities($resultat['argent']);
-      $_SESSION['confirmation_token'] = $resultat['confirmation_token'];
-      $_SESSION['date'] = htmlentities($resultat['date_creation']);
-      $_SESSION['xp'] = htmlentities($resultat['xp']);
-
-
-
-      header('Location: ./index.php'); //on redirige l'utilisateur vers la page d'accueil
-      exit;
-    }
-  }
-}
-?>
-
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Connexion</title>
-    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="./assets/css/vanilla-zoom.min.css">
-</head>
 
 <body>
     <section class="clean-block clean-form dark" style="height: 830.188px;">
@@ -96,9 +6,9 @@
                 <h2 class="text-info" style="text-align: center;"><strong>Se connecter</strong></h2>
             </div>
             <p style="text-align: center;">Connectez vous à votre compte PollExpress<br></p>
-            <form method="post">
+            <form method="post" action="./index.php?action=login">
               <?php
-              if (isset($er_email)){ //si $er_mail n'est pas vide, alors on l'affiche
+              if (isset($er_email)){ 
               ?>
                  <div><?= $er_email ?></div>
               <?php
@@ -107,7 +17,7 @@
                 <div class="mb-3"><label class="form-label" for="email"><strong>Adresse Email</strong><br></label>
                   <input class="form-control item" type="email" id="email" placeholder="Adresse email" name="email" value="<?php if(isset($email)){ echo $email; }?>" required></div>
                   <?php
-                  if (isset($er_mdp)){ //si $er_mdp n'est pas vide, alors on l'affiche
+                  if (isset($er_mdp)){ 
                   ?>
                     <div><?= $er_mdp ?></div>
                   <?php
@@ -115,17 +25,23 @@
                   ?>
                 <div class="mb-3"><label class="form-label" for="password"><strong>Mot de passe <a href="./index.php?action=resetmdp">Mot de passe oublié</a></strong><br></label>
                   <input class="form-control" type="password" id="password" name="mdp"></div>
-                <div class="mb-3" style="width: 435px;height: -65px;margin: 20px;padding: 0px;"></div><button class="btn btn-primary text-center" name="connexion" type="submit" style="background: rgb(12,36,97);border-radius: 13px;border-color: rgb(12,36,97);margin: 5px;height: 39px;padding: 7px 12px;transform: scale(1.13);font-size: 14px;font-weight: bold;width: 130.344px;">Se connecter</button>
+                <div class="mb-3" style="width: 435px;height: -65px;margin: 20px;padding: 0px;"></div>
+                <button id="btnLogin" class="btn btn-primary text-center" name="connexion" type="submit" style="background: rgb(12,36,97);border-radius: 13px;border-color: rgb(12,36,97);margin: 5px;height: 39px;padding: 7px 12px;transform: scale(1.13);font-size: 14px;font-weight: bold;width: 130.344px;">Se connecter</button>
                 <div></div><small>Vous n'êtes pas encore inscrit ? <a href="./index.php?action=register">S'inscrire</a></small>
             </form>
         </div>
     </section>
-    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="./assets/js/vanilla-zoom.js"></script>
-    <script src="./assets/js/theme.js"></script>
+
 </body>
+<style type="text/css">
+  #btnLogin {
+    transition-duration: 0.25s !important;
+  }
 
-
-</html>
+  #btnLogin:hover {
+    background-color: #3B99E0 !important;
+    border-color: white !important; /* Green */
+    color: white !important;
+  }
+  
+</style>

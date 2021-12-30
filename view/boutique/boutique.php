@@ -1,7 +1,5 @@
 
 <?php
-    session_name('pollexpress');
-    session_start();
 
 require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
@@ -16,23 +14,21 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
         exit;
   }
 ?>
-    <main class="page pricing-table-page">
+    <main class="page pricing-table-page" >
         <section class="clean-block clean-pricing dark">
-            <div class="container">
+            <div class="container" style="padding-top: 80px;">
                 <div class="block-heading">
-                        <div class="partie_boutique">
+                        <div class="partie_boutique" >
                     <h2 class = "categorie_boutique"> <button>Personnalisation</button>
                                             <button>Objets Réels</button></h2><br>
                     <div class="row justify-content-center">
                                             <?php
+
                                         $reponse = $pdo->query('SELECT * FROM PE__Objet ORDER BY type ASC');
                                         $i = 0;
 
                                         while ($donnees = $reponse->fetch() and $i<50) {
-
-
                                             $i++;
-
                                             if($donnees['type'] == 'Chapeau') {
                                                 $nomcat = 'Chapeau';
                                                 $couleurH = '#c5a030';
@@ -143,11 +139,6 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
 
 
 
-
-
-
-
-
                                             ?>
                                             <div class="col-sm-6 col-lg-4" style="width: 228px; padding-top: 20px;">
 
@@ -163,9 +154,9 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                                             echo '<h4 class="card-title" style="height: 25px; color:white;">' . $donnees['nom'] . '</h4>'; //NOM
 
                                             echo '<div>
-                                                        <a class="text_bouton_acheter" style="color:white;" href="./index.php?action=achatItem&userID=' . $_SESSION['id'] . '&itemID=' . $donnees['itemID'] . '"> 
+                                                        <a class="text_bouton_acheter" style="color:white;" href="./index.php?controller=boutique&action=achatItem&userID=' . $_SESSION['id'] . '&itemID=' . $donnees['itemID'] . '"> 
                                                                 <button class="btn btn-primary " data-bss-hover-animate="pulse" style="width: 138px; height: 39px;border-width:3px;font-size: 14px;background-color:' . $couleurB .';border-color:' . $couleurH .'; ">'
-                                                                        . $donnees['prix'] . ' ' . '<img "src="https://www.pngall.com/wp-content/uploads/4/Dollar-Gold-Coin-PNG.png" alt="Pièces""'.' 
+                                                                        . $donnees['prix'] . ' ' . '<img style="width: 30px;" src="https://www.pngall.com/wp-content/uploads/4/Dollar-Gold-Coin-PNG.png">'.' 
                                                                 </button>
                                                         </a>
                                                 </div>';
@@ -179,7 +170,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                                         ?>
                                 
                     </div>
-                </div>
+                </div> <img src="">
                 </div>
             </div>
             <div class="col-sm-6 col-lg-4" style="width: 228px;">

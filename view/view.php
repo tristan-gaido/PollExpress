@@ -1,6 +1,8 @@
 <?php
+if(!isset($_SESSION)){
     session_name('pollexpress');
     session_start();
+   }
 ?>
 
 
@@ -32,8 +34,9 @@
                             ?>
                                 <li class="nav-item"><a class="nav-link active" href="./index.php">Accueil</a></li>
                                 <li class="nav-item"><a class="nav-link" href="./index.php?action=sondages">Sondages</a></li>
-                                <li class="nav-item"><a class="nav-link" href="./index.php?action=boutique">Boutique</a></li>
-                                <li class="nav-item"><a class="nav-link" href="./index.php?action=profil">Profil</a></li>
+                                <li class="nav-item"><a class="nav-link" href="?controller=boutique&action=readAll">Boutique</a></li>
+                                <li class="nav-item"><a class="nav-link" href="?controller=profil&action=readAll">Profil</a></li>
+                                <li class="nav-item"><a class="nav-link" href=".&action=succes">Succès</a></li>
                                 <li class="nav-item"><a class="nav-link active" href="./index.php?action=deconnexion">Déconnexion</a></li>
 
                             <?php
