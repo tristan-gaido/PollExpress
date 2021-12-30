@@ -58,6 +58,11 @@ if(!isset($_SESSION)){
             
         </div>    
             <footer class="page-footer dark">
+                <div style="text-align:center;">
+                    <a href="https://shorturl.at/abnF5">
+                        <img style="width:5%"src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" alt="Linkedin">
+                    </a>
+                    </div>
         <div class="footer-copyright">
             <p>© 2021 Express</p>
         </div>
