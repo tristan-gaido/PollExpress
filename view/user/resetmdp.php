@@ -2,7 +2,7 @@
                               <section class="clean-block clean-form dark" style="height: 830.188px;">
                                       <div class="container text-start" style="height: 459px;">
                                           <div class="block-heading" style="height: -5px;">
-                                              <h2 class="text-info" style="text-align: center;"><strong>Mot de passe oublié :</strong></h2>
+                                              <h2 class="text-info" style="text-align: center; margin-top: 80px;"><strong>Mot de passe oublié :</strong></h2>
                                           </div>
                                           <p style="text-align: center;">Entrez l'email de votre compte pour réinitialiser votre mot de passe.<br></p>
                               <form method="post" action="./index.php?action=resetmdp">

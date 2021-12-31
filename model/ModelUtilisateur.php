@@ -234,11 +234,11 @@ class ModelUtilisateur {
         }
     }
 
-    public static function createSondage($titre, $lien, $tag1, $tag2, $datecreation, $code) {
+    public static function createSondage($titre, $lien, $tag1, $tag2, $datecreation, $code, $bonus) {
         try {
 
-        $sql = Model::getPDO()->prepare("INSERT INTO PE__Sondage SET titre = :titre, lien = :lien, tag1 = :tag1, tag2 = :tag2, date_creation_sondage = :datecreation, code = :code");
-        $sql->execute(array('titre' => $titre, 'lien' => $lien, 'tag1' => $tag1, 'tag2' => $tag2, 'datecreation' => $datecreation, 'code' => $code));
+        $sql = Model::getPDO()->prepare("INSERT INTO PE__Sondage SET titre = :titre, lien = :lien, tag1 = :tag1, tag2 = :tag2, date_creation_sondage = :datecreation, code = :code, bonus = :bonus ");
+        $sql->execute(array('titre' => $titre, 'lien' => $lien, 'tag1' => $tag1, 'tag2' => $tag2, 'datecreation' => $datecreation, 'code' => $code, 'bonus' => $bonus));
         }
 
          catch (PDOException $e) {
@@ -287,16 +287,49 @@ class ModelUtilisateur {
         }
     }
 
-    public static function updateXp($idUser, $idSondage) {
+    public static function updateXp($idUser, $idSondage, $bonus) {
         try {
-        $sql = Model::getPDO()->prepare("UPDATE PE__User SET xp = xp+500, argent = argent+100 WHERE id = :id");
-        $sql->execute(array('id' => $idUser));
+        $sql = Model::getPDO()->prepare("UPDATE PE__User SET xp = xp + :bonus, argent = argent+100 WHERE id = :id");
+        $sql->execute(array('id' => $idUser, 'bonus' => $bonus));
         $sql2 = Model::getPDO()->prepare("INSERT INTO PE__SondageFait (userID, sondageID) VALUES (:idUser , :idSondage)");
         $sql2->execute(array('idUser' => $idUser, 'idSondage' => $idSondage));
         }
         catch (PDOException $e) {
             if (Conf::getDebug()) {
                 echo $e->getMessage(); 
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
+    public static function addSignalement($idSondage, $idUser) {
+        try {        
+        $sql2 = Model::getPDO()->prepare("INSERT INTO PE__Signalements (idSondage, idUser) VALUES (:idSondage, :idUser)");
+        $sql2->execute(array('idSondage' => $idSondage, 'idUser' => $idUser));
+        }
+        catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage(); 
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
+    public static function selectSignalement($idsondage, $idUser) {
+        try {
+
+        $sql = Model::getPDO()->prepare("SELECT * FROM PE__Signalements WHERE idUser=:idUser AND idSondage = :idSondage");
+        $sql->execute(array('idUser' => $idUser, 'idSondage' => $idsondage));
+        $testtoken = $sql->fetch();
+        return $testtoken; 
+        }
+         catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
             } else {
                 echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
             }
