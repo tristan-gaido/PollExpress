@@ -45,6 +45,11 @@ class ControllerUser {
     	        $tag1 = htmlentities(trim($tag1));
     	        $tag2 = htmlentities(trim($tag2));
     	        $code = htmlentities(trim($code));
+              $bonus = 100*$duree; 
+
+          if($tag1==$tag2){
+            $tag2 = "";
+          }
 
 
     	    $req_lien = ModelUtilisateur::selectSondageFromLien($lien);
@@ -57,7 +62,7 @@ class ControllerUser {
 
     	      $datecreation = date('Y-m-d H');
 
-    	      ModelUtilisateur::createSondage($nomsondage, $lien, $tag1, $tag2, $datecreation, $code);
+    	      ModelUtilisateur::createSondage($nomsondage, $lien, $tag1, $tag2, $datecreation, $code, $bonus);
     	          
     	   
     	          header('Location: ./index.php'); 
@@ -402,7 +407,8 @@ class ControllerUser {
    	
 
    	if($req_code){
-   		ModelUtilisateur::updateXp($idUser, $idsondage);
+      $bonus = $req_code ['bonus'];
+   		ModelUtilisateur::updateXp($idUser, $idsondage, $bonus);
 
    		$sql = ModelUtilisateur::selectSondageFromID($idsondage);
 
@@ -411,11 +417,27 @@ class ControllerUser {
    		ModelUtilisateur::updateNbClics($nbclics, $idsondage);
 
    		$_SESSION['argent'] = $_SESSION['argent']+100;
-   		$_SESSION['xp'] = $_SESSION['xp']+500;
+   		$_SESSION['xp'] = $_SESSION['xp']+$bonus;
    	}
 
   }
   header('Location: ./index.php');
+      
+ }
+
+   public static function signaler() {
+
+    $idsondage = $_GET['idsondage'];
+    $iduser = $_SESSION['id'];
+
+    $req_signalement = ModelUtilisateur::selectSignalement($idsondage, $iduser);
+
+    if(!$req_signalement){
+    
+    ModelUtilisateur::addSignalement($idsondage, $iduser);
+    }
+  
+    header('Location: ./index.php');
       
  }
 

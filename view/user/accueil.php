@@ -97,7 +97,7 @@
                     echo '<p class = "champSondage colle">Posté le : ' . $donnees['date_creation_sondage'] . '</p>'; 
                     ?>
                     <div class="icons"><a href="./index.php?action=testclics&id=<?php echo $donnees['id_sondage']?>&lien=<?php echo $donnees['lien']?>" target="_blank">
-                        <button id="btnSondage" class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 10px;background: #2e86de;">Répondre au sondage</button></a>
+                        <button id="btnSondage" class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 11px;background: #2e86de; padding: 3px 3px;">Répondre au sondage</button></a>
                     <div class="modal myModal">
                     <div class="modal-content">
                     <form method="post" action="./index.php?action=testcode&idsondage=<?php echo $donnees['id_sondage']?>">                          
@@ -108,8 +108,9 @@
                         </form>
                     </div>
                     </div></div></div>
+                    
+                    <p class = "champSondage"><br><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues : <?php echo $donnees['clics'] ?></small><a href="./index.php?action=signaler&idsondage=<?php echo $donnees['id_sondage'] ?>"><button class="btn btn-primary btn-xs" style="font-size: 12px; margin-left: 30px; padding: 5px;">Signaler</button></a></p></div></div>
                     <?php
-                    echo '<p class = "champSondage"><br><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues :&nbsp;' . $donnees['clics'] . '</small></p></div></div>';
 
             }
                 $reponse->closeCursor();
