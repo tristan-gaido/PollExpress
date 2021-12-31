@@ -23,11 +23,11 @@
                   <?php
                     }
                   ?>
-                <div class="mb-3"><label class="form-label" for="password"><strong>Mot de passe</strong><a href="./index.php?action=resetmdp" style="color: #3B99E0;">Mot de passe oublié</a><br></label>
+                <div class="mb-3"><label class="form-label" for="password"><strong>Mot de passe <a href="./index.php?action=resetmdp">Mot de passe oublié</a></strong><br></label>
                   <input class="form-control" type="password" id="password" name="mdp"></div>
                 <div class="mb-3" style="width: 435px;height: -65px;margin: 20px;padding: 0px;"></div>
                 <button id="btnLogin" class="btn btn-primary text-center" name="connexion" type="submit" style="background: rgb(12,36,97);border-radius: 13px;border-color: rgb(12,36,97);margin: 5px;height: 39px;padding: 7px 12px;transform: scale(1.13);font-size: 14px;font-weight: bold;width: 130.344px;">Se connecter</button>
-                <div></div><small>Vous n'êtes pas encore inscrit ? <a href="./index.php?action=register" style="color: #3B99E0;">S'inscrire</a></small>
+                <div></div><small>Vous n'êtes pas encore inscrit ? <a href="./index.php?action=register">S'inscrire</a></small>
             </form>
         </div>
     </section>
