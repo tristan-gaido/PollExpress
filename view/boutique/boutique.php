@@ -73,9 +73,9 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                                             }
                                             else if($donnees['type'] == 'haircut') {
                                                 $nomcat = 'Coupe de cheveux';
-                                                $couleurH = '';
-                                                $couleurM = '';
-                                                $couleurB = '';
+                                                $couleurH = '#ba9a00';
+                                                $couleurM = '#d0ba50';
+                                                $couleurB = '#faf065';
                                             }
                                             else if($donnees['type'] == 'hair_color') {
                                                 $nomcat = 'Couleur de cheveux';
@@ -147,7 +147,7 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
                                                 echo '<h4 class="card-title" style="height:25px; margin:0px;border-bottom:3px solid; color:white; padding-top:5px; padding-bottom:25px; background-color:' . $couleurH .'; border-bottom-color:#ababab;">' . $nomcat . '</h4>'; //Categorie
                                                 ?>  
                                                     <img class="card-img-top w-100 d-block" style="border-radius: 0px; background-color:<?php echo $couleurM;?>"src="./assets/img/custom/<?php echo $donnees['type'] ?>/<?php echo $donnees['file'] ?>" style="height: 140.234px;">
-                                                    <div class="card-body info"  style="height: 120.234px; background-color:<?php echo $couleurM;?>">
+                                                    <div class="card-body info"  style="height: 120.234px; padding: 20px; ;background-color:<?php echo $couleurM;?>">
                                             <?php
 
 
