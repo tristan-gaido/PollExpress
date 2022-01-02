@@ -25,7 +25,7 @@ $req2->closeCursor();
             <div class="container">
                 <div class="block-heading">
                     <div class="tab">
-                      <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'Equipement')">Equipement</button>  
+                      <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'Equipement')">Équipement</button>  
                     <button class="tablinks"  onclick="openCity(event, 'Profil')">Profil</button>
                     
                     </div>
