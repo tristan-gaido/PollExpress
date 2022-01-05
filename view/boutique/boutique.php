@@ -18,6 +18,9 @@ require_once '/home/ann2/gaidot/public_html/PollExpress/config/BDD.php';
         <section class="clean-block clean-pricing dark">
             <div class="container" style="padding-top: 80px;">
                 <div class="block-heading">
+                    <div style="border-width: 20px; "><h1  style="font-weight: bold ; text-align:  left; margin-left:  50px; margin-bottom:    35px;"> <?php echo $_SESSION['argent']; ?> <img style="width: 60px;" src="https://www.pngall.com/wp-content/uploads/4/Dollar-Gold-Coin-PNG.png"></h1>
+                    </div>
+
                         <div class="partie_boutique" >
                     <h2 class = "categorie_boutique"> <button>Personnalisation</button>
                                             <button>Objets Réels</button></h2><br>

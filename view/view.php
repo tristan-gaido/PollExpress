@@ -60,7 +60,7 @@ if(!isset($_SESSION)){
             <footer class="page-footer dark">
                 <div style="text-align:center;">
         <div class="footer-copyright">
-            <p>© 2021 Express</p>
+            <p>© 2022 Express</p>
         </div>
     </footer>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>

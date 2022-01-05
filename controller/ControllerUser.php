@@ -396,9 +396,9 @@ class ControllerUser {
 
    	$idsondage = $_GET['idsondage'];
    	
-   	$codeSondage = $_POST['codeSondage'];
-   	$codeSondage = htmlentities($codeSondage);
+   	$codeSondage = htmlentities($_POST['codeSondage']);
    	$idUser = $_SESSION['id'];
+
 
    	$req_test_sondageFait = ModelUtilisateur::selectSondageFaits($idsondage, $idUser);
    	if(!$req_test_sondageFait){
@@ -440,6 +440,46 @@ class ControllerUser {
     header('Location: ./index.php');
       
  }
+
+  public static function deletedaccount() {
+        $controller='user';
+        $view='login';
+        $pagetitle='PollExpress';
+        require_once File::build_path(array("view", "view.php")); //"redirige" vers la vue
+
+        $sql = "DELETE FROM PE__User WHERE id = :id";
+        $values = array("id" => $_SESSION['id']);
+        $req_prep = Model::getPDO()->prepare($sql);
+        $req_prep->execute($values);
+        session_destroy();
+   }
+
+ public static function downloaded() {
+       
+        $controller='user';
+        $view='redirectiondownload';
+        $pagetitle='PollExpress - Réception données';
+        require_once File::build_path(array("view", "view.php")); //"redirige" vers la vue
+
+        $reqtoken = Model::getPDO()->prepare("SELECT * FROM PE__User WHERE email = :email");
+        $reqtoken->execute(array('email' => $_SESSION['email']));
+        $reqtoken = $reqtoken->fetch();
+
+        $mailconf = $reqtoken['email'];
+
+
+        $header = "From: PollExpress <tristan.gaido.pro@gmail.com>\n";
+        $header .= "MIME-version: 1.0\n";
+        $header .= "Content-type: text/html; charset=utf-8\n";
+        $header .= "Content-Transfer-ncoding: 8bit";
+
+        $contenu = '<p>Bonjour ' . $reqtoken['pseudo'] . ',</p><br>
+                    <p>Voici les données de votre compte qui sont enregistrées dans notre base de données :<p>' 
+                    . 'Pseudo : ' . $reqtoken['pseudo'] . '<br />'
+                    . 'Email : ' . $reqtoken['email'] . '<br />'
+                    . 'Date de création : ' . $reqtoken['date_creation'] . '<br />';
+        mail($mailconf, 'Vos donnees personnelles', $contenu, $header);
+   }
 
   
 }

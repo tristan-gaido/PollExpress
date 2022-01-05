@@ -25,9 +25,8 @@ $req2->closeCursor();
             <div class="container">
                 <div class="block-heading">
                     <div class="tab">
-                      <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'Equipement')">Équipement</button>  
+                    <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'Equipement')">Equipement</button>  
                     <button class="tablinks"  onclick="openCity(event, 'Profil')">Profil</button>
-                    
                     </div>
                     <div id="Profil" class="tabcontent">
 
@@ -42,6 +41,8 @@ $req2->closeCursor();
                           <h3>Email : <?php echo $_SESSION['email'];?> </h3>
                           <h3>Date de création du compte : <?php echo $_SESSION['date']; ?> </h3>
                           <h3>Nombre de sondages répondus : <?php echo $resultat2['Stats']; ?></h3>
+                          <h3><a class="nav-link active" style="padding: 0px;" href="./index.php?action=deletedaccount">Supprimer le compte et ses données associées</a></h3>
+                          <h3><a class="nav-link active" style="padding: 0px;" href="./index.php?action=downloaded">Recevoir ses données par mail</a></h3>
 
                           <br><br><br></div></div>
 </div></div>

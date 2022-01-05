@@ -73,33 +73,44 @@
                         <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="assets/img/sondage-826x459.jpg" style="height: 120.234px;">
 
                         <script type="text/javascript">
-                     
+                                             
                         var modals = document.getElementsByClassName('modal');
                         var btns = document.getElementsByClassName("openmodal");
                         var spans=document.getElementsByClassName("close");
-                        for(let i=0;i<btns.length;i++){
-                           btns[i].onclick = function() {
-                              modals[i].style.display = "block";
-                           }
+                        
+                        function closeModal() {
+                          modal.style.display = "none";
                         }
-                        for(let i=0;i<spans.length;i++){
-                            spans[i].onclick = function() {
-                               modals[i].style.display = "none";
-                            }
-                         }      
+
+                        btn.onclick = function() {
+                          modal.style.display = "block";
+                        }
+
+                        for (let closeBtn of spans) {
+                          closeBtn.onclick = closeModal;
+                        }
+                        
                     </script>
                     <?php
+
                     
-                    echo '<h4 class="card-title" style="height: 14px;">' . $donnees['titre'] . '</h4>';
+                    if(strlen($donnees['titre'])>20){
+                           	echo '<h4 class="card-title" style="height: 14px; margin-top: 5px; font-size: 15px; margin-bottom: 45px;margin-left: 5px;margin-right: 5px;">' . $donnees['titre'] . '</h4>';
+                    }else{
+                    	echo '<h4 class="card-title" style="height: 14px; margin-top: 5px;">' . $donnees['titre'] . '</h4>';
+                    }
+          
 
-                    echo '<p class="card-text">' . $donnees['tag1'] . '⠀⠀' . $donnees['tag2'] . '</p>';
+                    echo '<p class="card-text" style="margin-bottom: 3px;">' . $donnees['tag1'] . '⠀⠀' . $donnees['tag2'] . '</p>';
 
-                    echo '<p class = "champSondage colle">Posté le : ' . $donnees['date_creation_sondage'] . '</p>'; 
+                    echo '<p class = "champSondage colle" style="margin-bottom: 3px;">Posté le : ' . $donnees['date_creation_sondage'] . '</p>'; 
                     ?>
-                    <div class="icons"><a href="./index.php?action=testclics&id=<?php echo $donnees['id_sondage']?>&lien=<?php echo $donnees['lien']?>" target="_blank">
+                    <div class="icons"><a style="height: 55px;" href="./index.php?action=testclics&id=<?php echo $donnees['id_sondage']?>&lien=<?php echo $donnees['lien']?>" target="_blank">
                         <button id="btnSondage" class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 11px;background: #2e86de; padding: 3px 3px;">Répondre au sondage</button></a>
                     <div class="modal myModal">
                     <div class="modal-content">
+                    	<span class="close">&times;</span>
+                    	     
                     <form method="post" action="./index.php?action=testcode&idsondage=<?php echo $donnees['id_sondage']?>">                          
                             <div class="mb-3"><label class="form-label" for="code"><strong>Entrez le code du sondage</strong><br></label>
                               <input class="form-control item" type="text" id="code" placeholder="Code du sondage" name="codeSondage"></div>                       
@@ -149,14 +160,20 @@
                          }      
                     </script>
                     <?php
+
                     
-                    echo '<h4 class="card-title" style="height: 14px;">' . $donnees['titre'] . '</h4>';
+                    if(strlen($donnees['titre'])>23){
+                           	echo '<h4 class="card-title" style="height: 14px; margin-top: 5px; font-size: 15px; margin-bottom: 60px;">' . $donnees['titre'] . '</h4>';
+                    }else{
+                    	echo '<h4 class="card-title" style="height: 14px; margin-top: 5px;">' . $donnees['titre'] . '</h4>';
+                    }
+          
 
-                    echo '<p class="card-text">' . $donnees['tag1'] . '⠀⠀' . $donnees['tag2'] . '</p>';
+                    echo '<p class="card-text" style="margin-bottom: 3px;">' . $donnees['tag1'] . '⠀⠀' . $donnees['tag2'] . '</p>';
 
-                    echo '<p class = "champSondage colle">Posté le : ' . $donnees['date_creation_sondage'] . '</p>'; 
+                    echo '<p class = "champSondage colle" style="margin-bottom: 3px;">Posté le : ' . $donnees['date_creation_sondage'] . '</p>'; 
                     ?>
-                    <div class="icons"><a href="./index.php?action=testclics&id=<?php echo $donnees['id_sondage']?>&lien=<?php echo $donnees['lien']?>" target="_blank">
+                    <div class="icons"><a style="height: 55px;" href="./index.php?action=testclics&id=<?php echo $donnees['id_sondage']?>&lien=<?php echo $donnees['lien']?>" target="_blank">
                         <button id="btnSondage" class="openmodal myBtn btn btn-primary" style="width: 138px;height: 43px;font-size: 11px;background: #2e86de; padding: 3px 3px;">Répondre au sondage</button></a>
                     <div class="modal myModal">
                     <div class="modal-content">

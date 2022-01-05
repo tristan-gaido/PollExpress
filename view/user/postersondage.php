@@ -15,7 +15,7 @@
       ?>
                 <div class="mb-3">
                   <label class="form-label" for="email"><strong>Nom du sondage</strong><br></label>
-                  <input class="form-control item" type="text" id="email" name="nomsondage" minlength="5" placeholder="Nom du sondage" name="email" value="<?php if(isset($nomsondage)){ echo $nomsondage; }?>" required></div>
+                  <input class="form-control item" type="text" id="email" name="nomsondage" minlength="5" maxlength="60" placeholder="Nom du sondage" name="email" value="<?php if(isset($nomsondage)){ echo $nomsondage; }?>" required></div>
 
                   <?php
             if (isset($er_lien)){ 
@@ -30,7 +30,7 @@
 
                 <div class="mb-3">
                   <label class="form-label" for="code"><strong>Code du sondage</strong><br></label>
-                  <input class="form-control" type="text" id="code" name="code" placeholder="Code du sondage" maxlength="20" value="<?php if(isset($code)){ echo $code; }?>" required></div>
+                  <input class="form-control" type="text" id="code" name="code" placeholder="Code du sondage" minlength="3" maxlength="20" value="<?php if(isset($code)){ echo $code; }?>" required></div>
 
                 
                   <label class="form-label" for="duree"><strong>Durée approximative du sondage</strong><br></label><br>
