@@ -119,6 +119,13 @@
                         </form>
                     </div>
                     </div></div></div>
+                    <?php
+                    if($_SESSION['id']==$donnees['userID']){
+                    ?>
+                     <p style="margin: 0px; padding: 0px;"> <a href="./index.php?action=deletesondage&idsondage=<?php echo $donnees['id_sondage']?>"> Supprimer </a></p>
+                     <?php 
+                     }
+                     ?>
                     
                     <p class = "champSondage"><br><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues : <?php echo $donnees['clics'] ?></small><a href="./index.php?action=signaler&idsondage=<?php echo $donnees['id_sondage'] ?>"><button class="btn btn-primary btn-xs" style="font-size: 12px; margin-left: 30px; padding: 5px;">Signaler</button></a></p></div></div>
                     <?php

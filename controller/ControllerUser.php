@@ -62,7 +62,9 @@ class ControllerUser {
 
     	      $datecreation = date('Y-m-d H');
 
-    	      ModelUtilisateur::createSondage($nomsondage, $lien, $tag1, $tag2, $datecreation, $code, $bonus);
+              $userID = $_SESSION['id'];
+
+    	      ModelUtilisateur::createSondage($nomsondage, $lien, $tag1, $tag2, $datecreation, $code, $bonus, $userID);
     	          
     	   
     	          header('Location: ./index.php'); 
@@ -480,6 +482,18 @@ class ControllerUser {
                     . 'Date de création : ' . $reqtoken['date_creation'] . '<br />';
         mail($mailconf, 'Vos donnees personnelles', $contenu, $header);
    }
+
+   public static function deletesondage() {
+
+        $sondageID = $_GET['idsondage'];
+
+
+        $sql = Model::getPDO()->prepare("DELETE FROM PE__Sondage WHERE id_sondage = :idSondage");
+        $sql->execute(array('idSondage' => $sondageID));
+        header('Location: ./index.php');
+
+
+    }
 
   
 }

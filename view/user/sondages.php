@@ -16,12 +16,12 @@ if((isset($_SESSION['id'])) && ($_SESSION['confirmation_token']==0)){
 if(!empty($_POST)){
     extract($_POST);
 
-    $tag = '';
 
     if (isset($_POST['search'])){
 
 
         if (isset($tag1) || isset($tag2) || isset($tag3) || isset($tag4)){
+             $tag = '';
 
         if (isset($tag1) && !isset($tag2) && !isset($tag3) && !isset($tag4)) {
                 $tag = $tag1;
@@ -39,8 +39,9 @@ if(!empty($_POST)){
         $recherche = htmlentities(strtolower(trim($recherche)));
 
                 if (!isset($tag1) && !isset($tag2) && !isset($tag3) && !isset($tag4)) {
-                $reponse = $pdo->query('SELECT * FROM PE__Sondage WHERE titre LIKE "%' . $recherche . '%"' );
+                $reponse = $pdo->query('SELECT * FROM PE__Sondage WHERE titre LIKE "%' . $recherche . '%" ORDER BY date_creation_sondage DESC' );
                 }
+    
                 else{
                 $reponse = $pdo->query('SELECT * FROM PE__Sondage WHERE tag1 ="' . $tag . '" OR tag2="' . $tag . '"');
                 }
@@ -71,7 +72,7 @@ if(!empty($_POST)){
 
                     
                     if(strlen($donnees['titre'])>20){
-                            echo '<h4 class="card-title" style="height: 14px; margin-top: 5px; font-size: 15px; margin-bottom: 60px;">' . $donnees['titre'] . '</h4>';
+                            echo '<h4 class="card-title" style="height: 14px; margin-top: 5px; font-size: 15px; margin-bottom: 45px;margin-left: 5px;margin-right: 5px;">' . $donnees['titre'] . '</h4>';
                     }else{
                         echo '<h4 class="card-title" style="height: 14px; margin-top: 5px;">' . $donnees['titre'] . '</h4>';
                     }
@@ -93,7 +94,13 @@ if(!empty($_POST)){
                         </form>
                     </div>
                     </div></div></div>
-                    
+                    <?php
+                    if($_SESSION['id']==$donnees['userID']){
+                    ?>
+                     <p style="margin: 0px; padding: 0px;"> <a href="./index.php?action=deletesondage&idsondage=<?php echo $donnees['id_sondage']?>"> Supprimer </a></p>
+                     <?php 
+                     }
+                     ?>
                     <p class = "champSondage"><br><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues : <?php echo $donnees['clics'] ?></small><a href="./index.php?action=signaler&idsondage=<?php echo $donnees['id_sondage'] ?>"><button class="btn btn-primary btn-xs" style="font-size: 12px; margin-left: 30px; padding: 5px;">Signaler</button></a></p></div></div>
                     <?php
 
@@ -168,7 +175,7 @@ if(!empty($_POST)){
 
                     
                     if(strlen($donnees['titre'])>20){
-                            echo '<h4 class="card-title" style="height: 14px; margin-top: 5px; font-size: 15px; margin-bottom: 60px;">' . $donnees['titre'] . '</h4>';
+                            echo '<h4 class="card-title" style="height: 14px; margin-top: 5px; font-size: 15px; margin-bottom: 45px;margin-left: 5px;margin-right: 5px;">' . $donnees['titre'] . '</h4>';
                     }else{
                         echo '<h4 class="card-title" style="height: 14px; margin-top: 5px;">' . $donnees['titre'] . '</h4>';
                     }
@@ -190,7 +197,13 @@ if(!empty($_POST)){
                         </form>
                     </div>
                     </div></div></div>
-                    
+                    <?php
+                    if($_SESSION['id']==$donnees['userID']){
+                    ?>
+                     <p style="margin: 0px; padding: 0px;"> <a href="./index.php?action=deletesondage&idsondage=<?php echo $donnees['id_sondage']?>"> Supprimer </a></p>
+                     <?php 
+                     }
+                     ?>
                     <p class = "champSondage"><br><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues : <?php echo $donnees['clics'] ?></small><a href="./index.php?action=signaler&idsondage=<?php echo $donnees['id_sondage'] ?>"><button class="btn btn-primary btn-xs" style="font-size: 12px; margin-left: 30px; padding: 5px;">Signaler</button></a></p></div></div>
                     <?php
 
@@ -231,8 +244,11 @@ if(!empty($_POST)){
                          }      
                     </script>
                     <?php
-                    
-                    echo '<h4 class="card-title" style="height: 14px;">' . $donnees['titre'] . '</h4>';
+                    if(strlen($donnees['titre'])>20){
+                            echo '<h4 class="card-title" style="height: 14px; margin-top: 5px; font-size: 15px; margin-bottom: 45px;margin-left: 5px;margin-right: 5px;">' . $donnees['titre'] . '</h4>';
+                    }else{
+                        echo '<h4 class="card-title" style="height: 14px; margin-top: 5px;">' . $donnees['titre'] . '</h4>';
+                    }
 
                     echo '<p class="card-text">' . $donnees['tag1'] . '⠀⠀' . $donnees['tag2'] . '</p>';
 
@@ -250,7 +266,13 @@ if(!empty($_POST)){
                         </form>
                     </div>
                     </div></div></div>
-                    
+                    <?php
+                    if($_SESSION['id']==$donnees['userID']){
+                    ?>
+                     <p style="margin: 0px; padding: 0px;"> <a href="./index.php?action=deletesondage&idsondage=<?php echo $donnees['id_sondage']?>"> Supprimer </a></p>
+                     <?php 
+                     }
+                     ?>
                     <p class = "champSondage"><br><small style="padding: -0;text-align: left;width: 0;height: 0;margin: 0;">Vues : <?php echo $donnees['clics'] ?></small><a href="./index.php?action=signaler&idsondage=<?php echo $donnees['id_sondage'] ?>"><button class="btn btn-primary btn-xs" style="font-size: 12px; margin-left: 30px; padding: 5px;">Signaler</button></a></p></div></div>
                     <?php
 
@@ -272,7 +294,7 @@ if(!empty($_POST)){
                 while ($donnees = $reponse->fetch()) {
                     ?>
                     <div class="col-sm-6 col-lg-4" style="width: 228px;">
-                        <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="assets/img/sondage-826x459.jpg" style="height: 120.234px;">
+                        <div class="card text-center clean-card" style="margin-bottom: 30px;"><img class="card-img-top w-100 d-block" src="assets/img/sondage-826x459.jpg" style="height: 120.234px;">
 
                         <script type="text/javascript">
                      
@@ -293,8 +315,8 @@ if(!empty($_POST)){
                     <?php
 
                     
-                    if(strlen($donnees['titre'])>24){
-                            echo '<h4 class="card-title" style="height: 14px; margin-top: 5px; font-size: 15px; margin-bottom: 60px;">' . $donnees['titre'] . '</h4>';
+                    if(strlen($donnees['titre'])>20){
+                            echo '<h4 class="card-title" style="height: 14px; margin-top: 5px; font-size: 15px; margin-bottom: 45px;margin-left: 5px;margin-right: 5px;">' . $donnees['titre'] . '</h4>';
                     }else{
                         echo '<h4 class="card-title" style="height: 14px; margin-top: 5px;">' . $donnees['titre'] . '</h4>';
                     }

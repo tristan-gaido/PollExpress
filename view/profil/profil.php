@@ -25,8 +25,8 @@ $req2->closeCursor();
             <div class="container">
                 <div class="block-heading">
                     <div class="tab">
-                    <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'Equipement')">Equipement</button>  
-                    <button class="tablinks"  onclick="openCity(event, 'Profil')">Profil</button>
+                    <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'Equipement')">Equipement</button>  
+                    <button class="tablinks"  onclick="openTab(event, 'Profil')">Profil</button>
                     </div>
                     <div id="Profil" class="tabcontent">
 
@@ -55,7 +55,7 @@ $req2->closeCursor();
                         while ($donnees = $reponse->fetch()) {
  
                                             ?>
-                                            <div class="col-sm-6 col-lg-4" style="width: 228px; padding-top: 20px;">
+                                            <div class="col-sm-6 col-lg-4" style="width: 228px; height: 350px; padding-top: 20px;">
                                                 <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="./assets/img/<?php echo $donnees['file'] ?>" style="height: 140.234px; padding: 10px">
                                                     <div class="card-body info" style="height: 160.234px;">
                                             
@@ -87,7 +87,7 @@ $req2->closeCursor();
                                         while ($donnees = $reponse->fetch() and $i<50) {
                                             $i++;
                                             ?>
-                                            <div class="col-sm-6 col-lg-4" style="width: 228px; padding-top: 20px;">
+                                            <div class="col-sm-6 col-lg-4" style="width: 228px; height: 370px; padding-top: 20px;">
                                                 <div class="card text-center clean-card"><img class="card-img-top w-100 d-block" src="./assets/img/<?php echo $donnees['file'] ?>" style="height: 140.234px; padding: 10px">
                                                     <div class="card-body info" style="height: 160.234px;">
                                             
@@ -138,7 +138,7 @@ $req2->closeCursor();
 <script type="text/javascript">
     document.getElementById("defaultOpen").click();
 
-    function openCity(evt, cityName) {
+    function openTab(evt, onglet) {
       var i, tabcontent, tablinks;
 
       tabcontent = document.getElementsByClassName("tabcontent");
@@ -151,7 +151,7 @@ $req2->closeCursor();
         tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
 
-      document.getElementById(cityName).style.display = "block";
+      document.getElementById(onglet).style.display = "block";
       evt.currentTarget.className += " active";
     }
 </script>

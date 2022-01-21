@@ -234,11 +234,11 @@ class ModelUtilisateur {
         }
     }
 
-    public static function createSondage($titre, $lien, $tag1, $tag2, $datecreation, $code, $bonus) {
+    public static function createSondage($titre, $lien, $tag1, $tag2, $datecreation, $code, $bonus, $userID) {
         try {
 
-        $sql = Model::getPDO()->prepare("INSERT INTO PE__Sondage SET titre = :titre, lien = :lien, tag1 = :tag1, tag2 = :tag2, date_creation_sondage = :datecreation, code = :code, bonus = :bonus ");
-        $sql->execute(array('titre' => $titre, 'lien' => $lien, 'tag1' => $tag1, 'tag2' => $tag2, 'datecreation' => $datecreation, 'code' => $code, 'bonus' => $bonus));
+        $sql = Model::getPDO()->prepare("INSERT INTO PE__Sondage SET titre = :titre, lien = :lien, tag1 = :tag1, tag2 = :tag2, date_creation_sondage = :datecreation, code = :code, bonus = :bonus, userID = :userID ");
+        $sql->execute(array('titre' => $titre, 'lien' => $lien, 'tag1' => $tag1, 'tag2' => $tag2, 'datecreation' => $datecreation, 'code' => $code, 'bonus' => $bonus, 'userID' => $userID));
         }
 
          catch (PDOException $e) {
